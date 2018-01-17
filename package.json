@@ -1,0 +1,26 @@
+{
+  "name": "hfcmysql",
+  "version": "1.0.0",
+  "description": "HFC with Mysql",
+  "main": "main.js",
+  "scripts": {
+    "start": "concurrently \"electron .\"",
+    "build": "concurrently \"electron-packager .\""
+  },
+  "author": "QUALSHORE",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "1.7.9",
+    "electron-packager": "^9.1.0",
+    "electron-winstaller": "^2.6.3"
+  },
+  "dependencies": {
+    "concurrently": "^3.5.1",
+    "gkm": "^0.1.0",
+    "mysql": "^2.15.0",
+    "nodemailer": "^4.4.0",
+    "play-sound": "^1.1.1",
+    "soundmanager2": "^2.97.20170602",
+    "webcamjs": "^1.0.23"
+  }
+}

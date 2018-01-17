@@ -1,0 +1,2 @@
+C:/HFCMYSQL/
+npm start

@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Elite Fitness Club</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<style type="text/css">
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+    #wrapper {
+    width: 123% !important;
+    }
+ 
+}
+
+@media only screen 
+and (min-device-width : 768px) and (max-device-width : 1024px){ 
+#wrapper {
+    width: 112% ;
+}
+}
+    .clean{
+        margin-top: 5%%;
+    }
+    hr{
+      width:50%;
+      border: 2px solid #efefef;
+      margin-left: 35%;
+    }
+    .ligne {
+        height: auto;
+        border-right: 3px solid #efefef;
+    }
+</style>
+</head>
+
+<body style="background-color: #ffffff; overflow-x: hidden;">
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- <a href="index.html"> -->
+                    <div style="text-align: center;">
+                        <img src="../img/Elite.png">
+                    </div>
+                <!-- </a> -->
+            </div>
+            <!-- /.navbar-header -->
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+						<label> Prénom </label> <input type="text" id="prenom0"/> <label> nom </label> <input type="text" id="nom0"/> <input type="button" class="btn btn-primary" value="rechercher" onclick="oublier();"/>
+
+                        <a href="forms.html" >
+                            <i class="fa fa-edit fa-fw" ></i>
+                        </a>
+                    </li>
+                    <!-- <li>
+                    <a href="forms.html"><i class="fa fa-edit fa-fw"></i></a>
+                    </li>
+					-->
+                <!-- /.dropdown -->
+               
+            </ul>
+            <!-- /.navbar-top-links -->
+
+        </nav>
+             <div class="col-lg-10 col-md-10 col-sm-12"  id="valeur_list" style="margin-top:-35px;background-color: #fff"><br/><br/><br/><br/>
+                <div class="container">
+                <div class="row"  >
+                    <div class="col-lg-2 col-md-2 col-sm-4" >
+                        <!-- <img src="../img/photo.png" class="img-circle" style="margin-top:10%; max-width: 50%; max-height: 50%;">-->
+
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-xs-12">
+                        <label style="color:#ffa500;text-decoration:underline;"> 
+                            <h4>IDENTIFICATION DE L'ABONNE </h4>
+                        </label>	
+							
+								<script>	
+
+								console.log("BOCAR ");
+								console.log(localStorage.getItem("result_length"));
+								var result_length = localStorage.getItem("result_length");
+								console.log(localStorage.getItem("nom"+0));
+								console.log(localStorage.getItem("prenom"+0));
+
+
+								var e1 = '<table class="table"><thead><tr><th>Nom </th><th>Prénom</th><th> Téléphone </th><th> Civilite </th><th>  </th></tr></thead><tbody>';
+									for (i=0; i<= parseInt(result_length)-1;i++){
+										e1 = e1 + "<tr><td scope=\"row\">"+localStorage.getItem("nom"+i)+"</td><td>"+localStorage.getItem("prenom"+i)+"</td><td>"+localStorage.getItem("telephone11"+i)+"</td><td>"+localStorage.getItem("civilite"+i)+"</td><td><button onclick=\"test0000("+i+");\">Details</button></td></tr><br/>";	
+										
+										
+										function test0000(i){
+										
+										
+										
+												var mysql = require('mysql');
+												var con = mysql.createConnection({
+												  host: "localhost",
+												  user: "root",
+												  password: "",
+												  database: "hfc_db"
+												});
+										
+												console.log(result_length);
+												var currentDate = new Date()
+												   
+												var day = currentDate.getDate()
+												var month = currentDate.getMonth() + 1
+												var year = currentDate.getFullYear()
+
+												// var nows = year+"-"+month+"-"+day;
+
+
+												var nows;
+												if (day == 1){
+
+
+					    								var days = "0"+1;
+
+					                                    if (month == 1){
+					                                        var months = "0"+1;
+					                                        nows = year+"-"+months+"-"+days;
+					                                    } else if (month == 2){
+					                                        var months = "0"+2;
+					                                        nows = year+"-"+months+"-"+days;
+					                                    }else if (month == 3){
+					                                        var months = "0"+3;
+					                                        nows = year+"-"+months+"-"+days;
+					                                    }else if (month == 4){
+					                                        var months = "0"+4;
+					                                        nows = year+"-"+months+"-"+days;
+					                                    }else if (month == 5){
+					                                        var months = "0"+5;
+					                                        nows = year+"-"+months+"-"+days;
+					                                    }else if (month == 6){
+					                                        var months = "0"+6;
+					                                        nows = year+"-"+months+"-"+days;
+					                                    }else if (month == 7){
+					                                        var months = "0"+7;
+					                                        nows = year+"-"+months+"-"+days;
+					                                    }else if (month == 8){
+					                                        var months = "0"+8;
+					                                        nows = year+"-"+months+"-"+days;
+					                                    }else if (month == 9){
+					                                        var months = "0"+9;
+					                                        nows = year+"-"+months+"-"+days;
+					                                    }else {
+					                                        var months = month;
+					                                        nows = year+"-"+months+"-"+days;
+					                                    }
+												} else if (day == 2){
+					        								var days = "0"+2;
+					        								// nows = year+"-"+month+"-"+days;
+					                                         if (month == 1){
+					                                            var months = "0"+1;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        } else if (month == 2){
+					                                            var months = "0"+2;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 3){
+					                                            var months = "0"+3;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 4){
+					                                            var months = "0"+4;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 5){
+					                                            var months = "0"+5;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 6){
+					                                            var months = "0"+6;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 7){
+					                                            var months = "0"+7;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 8){
+					                                            var months = "0"+8;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 9){
+					                                            var months = "0"+9;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else {
+					                                            var months = month;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }
+												}else if (day == 3){
+					        								var days = "0"+3;
+					        								// nows = year+"-"+month+"-"+days;
+					                                         if (month == 1){
+					                                            var months = "0"+1;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        } else if (month == 2){
+					                                            var months = "0"+2;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 3){
+					                                            var months = "0"+3;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 4){
+					                                            var months = "0"+4;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 5){
+					                                            var months = "0"+5;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 6){
+					                                            var months = "0"+6;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 7){
+					                                            var months = "0"+7;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 8){
+					                                            var months = "0"+8;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 9){
+					                                            var months = "0"+9;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else {
+					                                            var months = month;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }
+												}else if (day == 4){
+					        								var days = "0"+4;
+					        								// nows = year+"-"+month+"-"+days;
+					                                         if (month == 1){
+					                                            var months = "0"+1;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        } else if (month == 2){
+					                                            var months = "0"+2;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 3){
+					                                            var months = "0"+3;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 4){
+					                                            var months = "0"+4;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 5){
+					                                            var months = "0"+5;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 6){
+					                                            var months = "0"+6;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 7){
+					                                            var months = "0"+7;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 8){
+					                                            var months = "0"+8;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 9){
+					                                            var months = "0"+9;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else {
+					                                            var months = month;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }
+												}else if (day == 5){
+					        								var days = "0"+5;
+					        								// nows = year+"-"+month+"-"+days;
+					                                         if (month == 1){
+					                                            var months = "0"+1;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        } else if (month == 2){
+					                                            var months = "0"+2;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 3){
+					                                            var months = "0"+3;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 4){
+					                                            var months = "0"+4;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 5){
+					                                            var months = "0"+5;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 6){
+					                                            var months = "0"+6;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 7){
+					                                            var months = "0"+7;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 8){
+					                                            var months = "0"+8;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 9){
+					                                            var months = "0"+9;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else {
+					                                            var months = month;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }
+												}else if (day == 6){
+					        								var days = "0"+6;
+					        								// nows = year+"-"+month+"-"+days;
+					                                         if (month == 1){
+					                                            var months = "0"+1;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        } else if (month == 2){
+					                                            var months = "0"+2;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 3){
+					                                            var months = "0"+3;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 4){
+					                                            var months = "0"+4;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 5){
+					                                            var months = "0"+5;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 6){
+					                                            var months = "0"+6;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 7){
+					                                            var months = "0"+7;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 8){
+					                                            var months = "0"+8;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 9){
+					                                            var months = "0"+9;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else {
+					                                            var months = month;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }
+												}else if (day == 7){
+					        								var days = "0"+7;
+					        								// nows = year+"-"+month+"-"+days;
+					                                         if (month == 1){
+					                                            var months = "0"+1;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        } else if (month == 2){
+					                                            var months = "0"+2;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 3){
+					                                            var months = "0"+3;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 4){
+					                                            var months = "0"+4;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 5){
+					                                            var months = "0"+5;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 6){
+					                                            var months = "0"+6;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 7){
+					                                            var months = "0"+7;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 8){
+					                                            var months = "0"+8;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 9){
+					                                            var months = "0"+9;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else {
+					                                            var months = month;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }
+												}else if (day == 8){
+					        								var days = "0"+8;
+					        								// nows = year+"-"+month+"-"+days;
+					                                         if (month == 1){
+					                                            var months = "0"+1;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        } else if (month == 2){
+					                                            var months = "0"+2;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 3){
+					                                            var months = "0"+3;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 4){
+					                                            var months = "0"+4;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 5){
+					                                            var months = "0"+5;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 6){
+					                                            var months = "0"+6;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 7){
+					                                            var months = "0"+7;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 8){
+					                                            var months = "0"+8;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 9){
+					                                            var months = "0"+9;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else {
+					                                            var months = month;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }
+												}else if (day == 9){
+					        								var days = "0"+9;
+					        								// nows = year+"-"+month+"-"+day;
+					                                         if (month == 1){
+					                                            var months = "0"+1;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        } else if (month == 2){
+					                                            var months = "0"+2;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 3){
+					                                            var months = "0"+3;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 4){
+					                                            var months = "0"+4;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 5){
+					                                            var months = "0"+5;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 6){
+					                                            var months = "0"+6;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 7){
+					                                            var months = "0"+7;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 8){
+					                                            var months = "0"+8;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 9){
+					                                            var months = "0"+9;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else {
+					                                            var months = month;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }
+												}else {
+					        								var days = day;
+					        								// nows = year+"-"+month+"-"+days;
+					                                         if (month == 1){
+					                                            var months = "0"+1;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        } else if (month == 2){
+					                                            var months = "0"+2;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 3){
+					                                            var months = "0"+3;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 4){
+					                                            var months = "0"+4;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 5){
+					                                            var months = "0"+5;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 6){
+					                                            var months = "0"+6;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 7){
+					                                            var months = "0"+7;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 8){
+					                                            var months = "0"+8;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else if (month == 9){
+					                                            var months = "0"+9;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }else {
+					                                            var months = month;
+					                                            nows = year+"-"+months+"-"+days;
+					                                        }
+												}
+												
+										
+												if (localStorage.getItem("date_fin"+i)>= nows){
+
+															console.log(" COOL 0000 ");
+																// var player = require('play-sound')({player: "play"})
+																
+
+																// var player = require('play-sound')(opts = {})
+																// $ mplayer foo.mp3 
+															   
+																
+																soundManager.soundManager.setup({
+																			  // where to find flash audio SWFs, as needed
+																			  //url: '/path/to/swf-files/',
+																			  onready: function() {
+																				console.log("  SM2 is ready . play audio!");
+																				var fooSound0 = soundManager.soundManager.createSound({
+																						url: '../foo.mp3',
+																						onfinish:function(){
+																								document.location.href="../pages/forms_valide.html?nom="+localStorage.getItem("nom"+i)+"&prenom="+localStorage.getItem("prenom"+i)+"&dateNaiss="+localStorage.getItem("dateNaiss"+i)+"&profession="+localStorage.getItem("profession"+i)+"&idUser="+localStorage.getItem("idUser"+i)+"&idPaiement="+localStorage.getItem("idPaiement"+i)+"&date_debut="+localStorage.getItem("date_debut"+i)+"&date_fin="+localStorage.getItem("date_fin"+i)+"&nbseances_total="+localStorage.getItem("nbseances_total"+i)+"&nbseances_en_cours="+localStorage.getItem("nbseances_en_cours"+i)+"&dateencours="+localStorage.getItem("dateencours"+i)+"&civilite="+localStorage.getItem("civilite"+i)+"&id_typeabonnement="+localStorage.getItem("id_typeabonnement"+i)+"&photo="+localStorage.getItem("photo"+i);
+
+																						}
+																					});
+																				fooSound0.play();
+																				
+																			  }
+																			});
+
+																c="";
+																b="";
+
+
+														}else if (localStorage.getItem("nbseances_total"+i) > 0 ){
+
+																console.log("  COOLL 00000000 ");
+
+																if ( localStorage.getItem("nbseances_total"+i) >  localStorage.getItem("nbseances_en_cours"+i)   &   localStorage.getItem("dateencours"+i) == nows){
+																	console.log(" COOL 222222 ");
+																// var player = require('play-sound')({player: "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Lecteur Windows Media.exe"})
+
+																   //  var player = require('play-sound')(opts = {})
+
+																		
+																		
+																		
+																		soundManager.soundManager.setup({
+																			  // where to find flash audio SWFs, as needed
+																			  //url: '/path/to/swf-files/',
+																			  onready: function() {
+																				console.log("  SM2 is ready . play audio!");
+																				var fooSound = soundManager.soundManager.createSound({
+																						url: '../foo.mp3',
+																						onfinish:function(){
+																							// document.location.href="../pages/forms_valide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo;
+																							document.location.href="../pages/forms_valide.html?nom="+localStorage.getItem("nom"+i)+"&prenom="+localStorage.getItem("prenom"+i)+"&dateNaiss="+localStorage.getItem("dateNaiss"+i)+"&profession="+localStorage.getItem("profession"+i)+"&idUser="+localStorage.getItem("idUser"+i)+"&idPaiement="+localStorage.getItem("idPaiement"+i)+"&date_debut="+localStorage.getItem("date_debut"+i)+"&date_fin="+localStorage.getItem("date_fin"+i)+"&nbseances_total="+localStorage.getItem("nbseances_total"+i)+"&nbseances_en_cours="+localStorage.getItem("nbseances_en_cours"+i)+"&dateencours="+localStorage.getItem("dateencours"+i)+"&civilite="+localStorage.getItem("civilite"+i)+"&id_typeabonnement="+localStorage.getItem("id_typeabonnement"+i)+"&photo="+localStorage.getItem("photo"+i);
+
+																						}
+																					});
+																				fooSound.play();
+																				
+																			  }
+																			});
+
+																		c = "";
+																		b= "";
+
+
+
+																}else if (localStorage.getItem("nbseances_total"+i) > localStorage.getItem("nbseances_en_cours"+i)  &  localStorage.getItem("dateencours"+i)!= nows){
+																	console.log(" NON COOL 3333 "); 
+
+
+																	con.connect(function(err) {
+
+																		  // if (err) throw err;
+																		  console.log("Connected!");
+																		  var dd= "";
+																		  var df="";
+																		  var valeur_actuel = parseInt(localStorage.getItem("nbseances_en_cours"+i)+1);
+																		  console.log(" La valeur de Nb senaces en cours "+parseInt(localStorage.getItem("nbseances_en_cours"+i)+1)); 
+																		  var idpaiement = localStorage.getItem("idPaiement"+i);
+																		  console.log(" La valeur de l' ID PAIEMENT est "+idpaiement);
+
+																		  var sql3 = "UPDATE users_paiement SET date_debut='"+dd+"', date_fin='"+df+"', nbseances_en_cours='"+valeur_actuel+"', dateencours='"+nows+"' WHERE paiement.idPaiement="+idpaiement;;
+																		  
+																		  // var sql3 = "UPDATE paiement (idPaiement, date_debut, date_fin, idUser, nbseances_total, nbseances_en_cours, dateencours) VALUES ('?', '"+dd+"','"+df+"','"+result[0].idUser+"','"+result[0].nbseances_total+"','"+valeur_actuel+"','"+nows+"')";
+
+																		  console.log(sql3);
+																		  con.query(sql3, function (err, result) {
+																			// if (err) throw err;
+																			console.log("1 record inserted");
+																		  });
+																		  
+																		  
+																			
+																			
+																soundManager.soundManager.setup({
+																			  // where to find flash audio SWFs, as needed
+																			  //url: '/path/to/swf-files/',
+																			  onready: function() {
+																				console.log("  SM2 is ready . play audio!");
+																				var fooSound01 = soundManager.soundManager.createSound({
+																						url: '../foo.mp3',
+																						onfinish:function(){
+																							// document.location.href="../pages/forms_valide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo;
+																							document.location.href="../pages/forms_valide.html?nom="+localStorage.getItem("nom"+i)+"&prenom="+localStorage.getItem("prenom"+i)+"&dateNaiss="+localStorage.getItem("dateNaiss"+i)+"&profession="+localStorage.getItem("profession"+i)+"&idUser="+localStorage.getItem("idUser"+i)+"&idPaiement="+localStorage.getItem("idPaiement"+i)+"&date_debut="+localStorage.getItem("date_debut"+i)+"&date_fin="+localStorage.getItem("date_fin"+i)+"&nbseances_total="+localStorage.getItem("nbseances_total"+i)+"&nbseances_en_cours="+localStorage.getItem("nbseances_en_cours"+i)+"&dateencours="+localStorage.getItem("dateencours"+i)+"&civilite="+localStorage.getItem("civilite"+i)+"&id_typeabonnement="+localStorage.getItem("id_typeabonnement"+i)+"&photo="+localStorage.getItem("photo"+i);
+
+																						}
+																					});
+																				fooSound01.play();
+																				
+																			  }
+																			});
+																			
+
+
+																	});
+																c = "";
+																b= "";
+
+
+																}else if( localStorage.getItem("nbseances_total"+i) == localStorage.getItem("nbseances_en_cours"+i)) {
+
+																  console.log(" COOL 222222 ");
+
+																	// var player = require('play-sound')(opts = {})
+																	
+																		
+																		
+																		
+																soundManager.soundManager.setup({
+																			  // where to find flash audio SWFs, as needed
+																			  //url: '/path/to/swf-files/',
+																			  onready: function() {
+																				console.log("  SM2 is ready . play audio!");
+																				var fooSound2 = soundManager.soundManager.createSound({
+																						url: '../faux.mp3',
+																						onfinish:function(){
+																							// document.location.href="../pages/forms_invalide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo;
+																							document.location.href="../pages/forms_invalide.html?nom="+localStorage.getItem("nom"+i)+"&prenom="+localStorage.getItem("prenom"+i)+"&dateNaiss="+localStorage.getItem("dateNaiss"+i)+"&profession="+localStorage.getItem("profession"+i)+"&idUser="+localStorage.getItem("idUser"+i)+"&idPaiement="+localStorage.getItem("idPaiement"+i)+"&date_debut="+localStorage.getItem("date_debut"+i)+"&date_fin="+localStorage.getItem("date_fin"+i)+"&nbseances_total="+localStorage.getItem("nbseances_total"+i)+"&nbseances_en_cours="+localStorage.getItem("nbseances_en_cours"+i)+"&dateencours="+localStorage.getItem("dateencours"+i)+"&civilite="+localStorage.getItem("civilite"+i)+"&id_typeabonnement="+localStorage.getItem("id_typeabonnement"+i)+"&photo="+localStorage.getItem("photo"+i);
+
+																						}
+																					});
+																				fooSound2.play();
+																				
+																			  }
+																			});
+
+																		c = "";
+																		b= "";
+
+																}
+															}
+
+														else if (localStorage.getItem("date_fin"+i) < nows ){
+														  console.log("  COOLL 00000000 111111");
+
+																
+																			  
+																			soundManager.soundManager.setup({
+																			  // where to find flash audio SWFs, as needed
+																			  //url: '/path/to/swf-files/',
+																			  onready: function() {
+																				console.log("  SM2 is ready . play audio!");
+																				var fooSound1 = soundManager.soundManager.createSound({
+																						url: '../faux.mp3',
+																						onfinish:function(){
+																							// document.location.href="../pages/forms_invalide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo
+																							document.location.href="../pages/forms_invalide.html?nom="+localStorage.getItem("nom"+i)+"&prenom="+localStorage.getItem("prenom"+i)+"&dateNaiss="+localStorage.getItem("dateNaiss"+i)+"&profession="+localStorage.getItem("profession"+i)+"&idUser="+localStorage.getItem("idUser"+i)+"&idPaiement="+localStorage.getItem("idPaiement"+i)+"&date_debut="+localStorage.getItem("date_debut"+i)+"&date_fin="+localStorage.getItem("date_fin"+i)+"&nbseances_total="+localStorage.getItem("nbseances_total"+i)+"&nbseances_en_cours="+localStorage.getItem("nbseances_en_cours"+i)+"&dateencours="+localStorage.getItem("dateencours"+i)+"&civilite="+localStorage.getItem("civilite"+i)+"&id_typeabonnement="+localStorage.getItem("id_typeabonnement"+i)+"&photo="+localStorage.getItem("photo"+i);
+
+																						}
+																						
+																					});
+																				fooSound1.play();
+																				// document.location.href="../pages/forms_invalide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo;
+
+																				
+																			  }
+																			});
+																			// });
+																			
+																			
+																			
+																		   
+																	c = "";
+																	b= "";
+
+																////////////// document.location.href="../pages/forms_invalide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo;
+
+														
+															
+														}
+														
+										}
+														
+			
+												   
+
+										
+									}							
+								e1 += '</tbody></table>';
+								
+								document.getElementById("valeur_list").innerHTML = e1;
+								
+								
+							</script>
+
+							                 
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="../vendor/raphael/raphael.min.js"></script>
+    <script src="../vendor/morrisjs/morris.min.js"></script>
+    <script src="../data/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+    <script>
+
+        function redirection(){
+                window.location.href = '../pages/forms.html';
+        }
+    </script>
+	
+	<script>
+	
+	
+	function oublier(){
+	
+		var mysql = require('mysql');
+        var con = mysql.createConnection({
+          host: "localhost",
+          user: "root",
+          password: "",
+          database: "hfc_db"
+        });
+
+		// var valeur_de_recherche = document.getElementById('rechercher').value;
+		var prenom = document.getElementById('prenom0').value;
+		var nom = document.getElementById('nom0').value;
+
+
+				if (nom!= "" & prenom!= ""){	
+		con.connect(function(err) {
+		  if (err) throw err;
+		  var sql4 = "SELECT * FROM users_utilisateur2, users_paiement WHERE users_utilisateur2.prenom LIKE '"+prenom+"%' AND users_utilisateur2.nom LIKE '"+nom+"%' AND users_utilisateur2.id = users_paiement.idUser";
+		  // var sql4 = "SELECT * FROM users_utilisateur2 WHERE users_utilisateur2.nom LIKE "+valeur_de_recherche;
+
+		  console.log(sql4);
+		  con.query(sql4, function (err, result, fields) {
+			if (err) throw err;
+			if (result.length==0){
+				alert(prenom+" "+nom+" est introuvable !", " Elite Fitness Club");
+			}else if (result.length==1){
+			
+				console.log(result);
+				var currentDate = new Date()
+				   
+				var day = currentDate.getDate()
+				var month = currentDate.getMonth() + 1
+				var year = currentDate.getFullYear()
+
+				var nows = year+"-"+month+"-"+day;
+				
+							if (result[0].id_typeabonnement == 18 && result[0].date_fin >= nows){
+
+                              			var ladate = new Date();
+										var tab_jour=new Array("Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi");
+
+												if (tab_jour[ladate.getDay()] == "Lundi" && (ladate.getHours() >= 6) && (ladate.getHours() <= 14)){
+													
+
+													soundManager.soundManager.setup({
+														  // where to find flash audio SWFs, as needed
+														  //url: '/path/to/swf-files/',
+														  onready: function() {
+															console.log("  SM2 is ready . play audio!");
+															var fooSound0 = soundManager.soundManager.createSound({
+																	url: '../foo.mp3',
+																	onfinish:function(){
+																			document.location.href="../pages/forms_valide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo+"&date_autorisation="+result[0].date_autorisation;
+
+																	}
+																});
+															fooSound0.play();
+															
+														  }
+														});
+
+                                            			c="";
+                                            			b="";
+
+												}else if (tab_jour[ladate.getDay()] == "Mardi" && (ladate.getHours() >= 6) && (ladate.getHours() <= 14)){
+
+														soundManager.soundManager.setup({
+														  // where to find flash audio SWFs, as needed
+														  //url: '/path/to/swf-files/',
+														  onready: function() {
+															console.log("  SM2 is ready . play audio!");
+															var fooSound0 = soundManager.soundManager.createSound({
+																	url: '../foo.mp3',
+																	onfinish:function(){
+																			document.location.href="../pages/forms_valide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo+"&date_autorisation="+result[0].date_autorisation;
+
+																	}
+																});
+															fooSound0.play();
+															
+														  }
+														});
+
+			                                            c="";
+			                                            b="";
+
+												}else if (tab_jour[ladate.getDay()] == "Mercredi" && (ladate.getHours() >= 6) && (ladate.getHours() <= 14)){
+
+														soundManager.soundManager.setup({
+														  // where to find flash audio SWFs, as needed
+														  //url: '/path/to/swf-files/',
+														  onready: function() {
+															console.log("  SM2 is ready . play audio!");
+															var fooSound0 = soundManager.soundManager.createSound({
+																	url: '../foo.mp3',
+																	onfinish:function(){
+																			document.location.href="../pages/forms_valide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo+"&date_autorisation="+result[0].date_autorisation;
+
+																	}
+																});
+															fooSound0.play();
+															
+														  }
+														});
+
+			                                            c="";
+			                                            b="";
+
+												}else if (tab_jour[ladate.getDay()] == "Jeudi" && (ladate.getHours() >= 6) && (ladate.getHours() <= 14)){
+
+
+															soundManager.soundManager.setup({
+														  // where to find flash audio SWFs, as needed
+														  //url: '/path/to/swf-files/',
+														  onready: function() {
+															console.log("  SM2 is ready . play audio!");
+															var fooSound0 = soundManager.soundManager.createSound({
+																	url: '../foo.mp3',
+																	onfinish:function(){
+																			document.location.href="../pages/forms_valide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo+"&date_autorisation="+result[0].date_autorisation;
+
+																	}
+																});
+															fooSound0.play();
+															
+														  }
+														});
+
+			                                            c="";
+			                                            b="";
+												
+												}else if ( tab_jour[ladate.getDay()] == "Vendredi" && (ladate.getHours() >= 6) && (ladate.getHours() <= 14)){
+
+
+														soundManager.soundManager.setup({
+														  // where to find flash audio SWFs, as needed
+														  //url: '/path/to/swf-files/',
+														  onready: function() {
+															console.log("  SM2 is ready . play audio!");
+															var fooSound0 = soundManager.soundManager.createSound({
+																	url: '../foo.mp3',
+																	onfinish:function(){
+																			document.location.href="../pages/forms_valide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo+"&date_autorisation="+result[0].date_autorisation;
+
+																	}
+																});
+															fooSound0.play();
+															
+														  }
+														});
+
+			                                            c="";
+			                                            b="";
+												
+												}else if (tab_jour[ladate.getDay()] == "Samedi"){
+
+													soundManager.soundManager.setup({
+														  // where to find flash audio SWFs, as needed
+														  //url: '/path/to/swf-files/',
+														  onready: function() {
+															console.log("  SM2 is ready . play audio!");
+															var fooSound0 = soundManager.soundManager.createSound({
+																	url: '../foo.mp3',
+																	onfinish:function(){
+																			document.location.href="../pages/forms_valide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo+"&date_autorisation="+result[0].date_autorisation;
+
+																	}
+																});
+															fooSound0.play();
+															
+														  }
+														});
+
+				                                        c="";
+				                                        b="";
+												
+												}else if (tab_jour[ladate.getDay()] == "Dimanche"){
+													soundManager.soundManager.setup({
+														  // where to find flash audio SWFs, as needed
+														  //url: '/path/to/swf-files/',
+														  onready: function() {
+															console.log("  SM2 is ready . play audio!");
+															var fooSound0 = soundManager.soundManager.createSound({
+																	url: '../foo.mp3',
+																	onfinish:function(){
+																			document.location.href="../pages/forms_valide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo+"&date_autorisation="+result[0].date_autorisation;
+
+																	}
+																});
+															fooSound0.play();
+															
+														  }
+														});
+
+		                                            c="";
+		                                            b="";
+												}else {
+
+														soundManager.soundManager.setup({
+														  // where to find flash audio SWFs, as needed
+														  //url: '/path/to/swf-files/',
+														  onready: function() {
+															console.log("  SM2 is ready . play audio!");
+															var fooSound2 = soundManager.soundManager.createSound({
+																	url: '../faux.mp3',
+																	onfinish:function(){
+																		document.location.href="../pages/forms_invalide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo+"&date_autorisation="+result[0].date_autorisation;
+
+																	}
+																});
+															fooSound2.play();
+															
+														  }
+														});
+
+                                                    	c = "";
+                                                    	b= "";
+
+
+												}
+
+
+                                  	}else if (result[0].id_typeabonnement== 18 && result[0].date_fin < nows){
+											
+											soundManager.soundManager.setup({
+												  // where to find flash audio SWFs, as needed
+												  //url: '/path/to/swf-files/',
+												  onready: function() {
+													console.log("  SM2 is ready . play audio!");
+													var fooSound2 = soundManager.soundManager.createSound({
+															url: '../faux.mp3',
+															onfinish:function(){
+																document.location.href="../pages/forms_invalide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo+"&date_autorisation="+result[0].date_autorisation;
+
+															}
+														});
+													fooSound2.play();
+													
+												  }
+												});
+
+	                                        	c = "";
+	                                        	b= "";
+
+                                  	}else if (result[0].date_fin >= nows){
+
+                                        console.log(" COOL 0000 ");
+                                            // var player = require('play-sound')({player: "play"})
+											
+
+                                            // var player = require('play-sound')(opts = {})
+                                            // $ mplayer foo.mp3 
+                                           
+											
+											soundManager.soundManager.setup({
+														  // where to find flash audio SWFs, as needed
+														  //url: '/path/to/swf-files/',
+														  onready: function() {
+															console.log("  SM2 is ready . play audio!");
+															var fooSound0 = soundManager.soundManager.createSound({
+																	url: '../foo.mp3',
+																	onfinish:function(){
+																			document.location.href="../pages/forms_valide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo+"&date_autorisation="+result[0].date_autorisation;
+
+																	}
+																});
+															fooSound0.play();
+															
+														  }
+														});
+
+                                            c="";
+                                            b="";
+
+
+                                    }else if (result[0].nbseances_total > 0 ){
+
+                                            console.log("  COOLL 00000000 ");
+
+                                            if ( result[0].nbseances_total > result[0].nbseances_en_cours & result[0].dateencours == nows){
+                                                console.log(" COOL 222222 ");
+                                            // var player = require('play-sound')({player: "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Lecteur Windows Media.exe"})
+
+                                               //  var player = require('play-sound')(opts = {})
+
+													
+													
+													
+													soundManager.soundManager.setup({
+														  // where to find flash audio SWFs, as needed
+														  //url: '/path/to/swf-files/',
+														  onready: function() {
+															console.log("  SM2 is ready . play audio!");
+															var fooSound = soundManager.soundManager.createSound({
+																	url: '../foo.mp3',
+																	onfinish:function(){
+																		document.location.href="../pages/forms_valide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo+"&date_autorisation="+result[0].date_autorisation;
+
+																	}
+																});
+															fooSound.play();
+															
+														  }
+														});
+
+                                                    c = "";
+                                                    b= "";
+
+
+
+                                            }else if (result[0].nbseances_total > result[0].nbseances_en_cours & result[0].dateencours != nows){
+                                                console.log(" NON COOL 3333 ");
+
+
+                                                con.connect(function(err) {
+
+                                                      // if (err) throw err;
+                                                      console.log("Connected!");
+                                                      var dd= "";
+                                                      var df="";
+                                                      var valeur_actuel = parseInt(result[0].nbseances_en_cours+1);
+                                                      console.log(" La valeur de Nb senaces en cours "+parseInt(result[0].nbseances_en_cours+1)); 
+                                                      var idpaiement = result[0].idPaiement;
+                                                      console.log(" La valeur de l' ID PAIEMENT est "+idpaiement);
+
+                                                      var sql3 = "UPDATE users_paiement SET date_debut='"+dd+"', date_fin='"+df+"', nbseances_en_cours='"+valeur_actuel+"', dateencours='"+nows+"' WHERE paiement.idPaiement="+idpaiement;;
+                                                      
+                                                      // var sql3 = "UPDATE paiement (idPaiement, date_debut, date_fin, idUser, nbseances_total, nbseances_en_cours, dateencours) VALUES ('?', '"+dd+"','"+df+"','"+result[0].idUser+"','"+result[0].nbseances_total+"','"+valeur_actuel+"','"+nows+"')";
+
+                                                      console.log(sql3);
+                                                      con.query(sql3, function (err, result) {
+                                                        // if (err) throw err;
+                                                        console.log("1 record inserted");
+                                                      });
+                                                      
+                                                      
+														
+														
+											soundManager.soundManager.setup({
+														  // where to find flash audio SWFs, as needed
+														  //url: '/path/to/swf-files/',
+														  onready: function() {
+															console.log("  SM2 is ready . play audio!");
+															var fooSound01 = soundManager.soundManager.createSound({
+																	url: '../foo.mp3',
+																	onfinish:function(){
+																		document.location.href="../pages/forms_valide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo+"&date_autorisation="+result[0].date_autorisation;
+
+																	}
+																});
+															fooSound01.play();
+															
+														  }
+														});
+														
+
+
+                                                });
+                                            c = "";
+                                            b= "";
+
+
+                                            }else if(result[0].nbseances_total == result[0].nbseances_en_cours) {
+
+                                              console.log(" COOL 222222 ");
+
+                                                // var player = require('play-sound')(opts = {})
+												
+													
+													
+													
+											soundManager.soundManager.setup({
+														  // where to find flash audio SWFs, as needed
+														  //url: '/path/to/swf-files/',
+														  onready: function() {
+															console.log("  SM2 is ready . play audio!");
+															var fooSound2 = soundManager.soundManager.createSound({
+																	url: '../faux.mp3',
+																	onfinish:function(){
+																		document.location.href="../pages/forms_invalide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo+"&date_autorisation="+result[0].date_autorisation;
+
+																	}
+																});
+															fooSound2.play();
+															
+														  }
+														});
+
+                                                    c = "";
+                                                    b= "";
+
+                                            }else if (result[0].nbseances_total < result[0].nbseances_en_cours){
+												
+												console.log(" COOL 222222 ");
+
+                                                // var player = require('play-sound')(opts = {})
+												
+													
+													
+													
+											soundManager.soundManager.setup({
+														  // where to find flash audio SWFs, as needed
+														  //url: '/path/to/swf-files/',
+														  onready: function() {
+															console.log("  SM2 is ready . play audio!");
+															var fooSound2 = soundManager.soundManager.createSound({
+																	url: '../faux.mp3',
+																	onfinish:function(){
+																		document.location.href="../pages/forms_invalide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo+"&date_autorisation="+result[0].date_autorisation;
+
+																	}
+																});
+															fooSound2.play();
+															
+														  }
+														});
+
+                                                    c = "";
+                                                    b= "";
+												
+											}
+                                        }
+
+                                        else if (result[0].date_fin < nows ){
+                                      console.log("  COOLL 00000000 111111");
+
+                                            
+														  
+														  soundManager.soundManager.setup({
+														  // where to find flash audio SWFs, as needed
+														  //url: '/path/to/swf-files/',
+														  onready: function() {
+															console.log("  SM2 is ready . play audio!");
+															var fooSound1 = soundManager.soundManager.createSound({
+																	url: '../faux.mp3',
+																	onfinish:function(){
+																		document.location.href="../pages/forms_invalide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo+"&date_autorisation="+result[0].date_autorisation;
+
+																	}
+																	
+																});
+															fooSound1.play();
+															// document.location.href="../pages/forms_invalide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo;
+
+															
+														  }
+														});
+														// });
+														
+														
+														
+													   
+                                                c = "";
+                                                b= "";
+
+                                            ////////////// document.location.href="../pages/forms_invalide.html?nom="+result[0].nom+"&prenom="+result[0].prenom+"&dateNaiss="+result[0].dateNaiss+"&profession="+result[0].profession+"&idUser="+result[0].id+"&idPaiement="+result[0].idPaiement+"&date_debut="+result[0].date_debut+"&date_fin="+result[0].date_fin+"&nbseances_total="+result[0].nbseances_total+"&nbseances_en_cours="+result[0].nbseances_en_cours+"&dateencours="+result[0].dateencours+"&civilite="+result[0].civilite+"&id_typeabonnement="+result[0].id_typeabonnement+"&photo="+result[0].photo;
+
+                                    
+                                        
+                                    }
+                               
+				
+				
+				
+			}else{
+				console.log(result);
+				localStorage.setItem('result_length', result.length);
+
+				
+				// var json_result = JSON.stringify(result);
+				// console.log(json_result);
+				//  localStorage.setItem("results", json_result);
+				// localStorage.setItem('nom'+i, result[i].nom);
+				// document.location.href="../pages/forms_details.html";
+
+				//  Le cas ou il ya plusieurs personnes 
+				 for (var i =0; i<= result.length; i++){
+					var tout = "?nom="+result[i].nom+"&prenom="+result[i].prenom+"&dateNaiss="+result[i].dateNaiss+"&profession="+result[i].profession+"&idUser="+result[i].id+"&idPaiement="+result[i].idPaiement+"&date_debut="+result[i].date_debut+"&date_fin="+result[i].date_fin+"&nbseances_total="+result[i].nbseances_total+"&nbseances_en_cours="+result[i].nbseances_en_cours+"&dateencours="+result[i].dateencours+"&civilite="+result[i].civilite+"&id_typeabonnement="+result[i].id_typeabonnement+"&photo="+result[i].photo+"&result="+result.length+"&result1="+result+"&date_autorisation="+result[i].date_autorisation;
+					localStorage.setItem('nom'+i, result[i].nom);
+					localStorage.setItem('email'+i, result[i].email);
+					localStorage.setItem('prenom'+i, result[i].prenom);
+					localStorage.setItem('profession'+i, result[i].profession);
+					localStorage.setItem('dateNaiss'+i, result[i].dateNaiss);
+					localStorage.setItem('idUser'+i, result[i].idUser);
+					localStorage.setItem('idPaiement'+i, result[i].idPaiement);
+					localStorage.setItem('date_debut'+i, result[i].date_debut);
+					localStorage.setItem('date_fin'+i, result[i].date_fin);
+					localStorage.setItem('nbseances_total'+i, result[i].nbseances_total);
+					localStorage.setItem('dateencours'+i, result[i].dateencours);
+					localStorage.setItem('civilite'+i, result[i].civilite);
+					localStorage.setItem('id_typeabonnement'+i, result[i].id_typeabonnement);
+					localStorage.setItem('telephone11'+i, result[i].telephone);
+					localStorage.setItem("nbseances_en_cours"+i, result[i].nbseances_en_cours);
+					localStorage.setItem("photo"+i, result[i].photo);
+					localStorage.setItem("date_autorisation"+i, result[i].date_autorisation);
+
+					if (i == result.length-1){
+						document.location.href="../pages/forms_details.html"+tout;
+					}
+				}
+			
+			
+			}
+			
+		  });
+		});
+		}else{
+			alert(" Veuillez remplir le champ de texte !", " Elite Fitness Club");
+		}
+	}
+	</script>
+
+	
+	
+    <script>
+	
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+
+
+        console.log(" VALEUR DD "+url);
+
+        var nom = url.searchParams.get("nom");
+        console.log(" Le nom  "+nom);
+        // document.getElementById("nom").value = nom;
+
+
+        var prenom = url.searchParams.get("prenom");
+        console.log(" Le nom  "+prenom);
+        // document.getElementById("prenom").value = prenom;
+
+       
+
+        var profession = url.searchParams.get("profession");
+        console.log(" Le nom  "+profession);
+        // document.getElementById("profession").value = profession;
+
+
+        // var dates = new Date(dateNaiss);
+        // var datess0 = dates.getDate() + '/'+ (dates.getMonth() + 1) + '/' +  dates.getFullYear();
+        // console.log("datess0 "+datess0);
+        // document.getElementById("dateNaiss").value = datess0;
+
+        var dateNaiss = url.searchParams.get("dateNaiss");
+        console.log(" dateNaiss ====>>>  "+dateNaiss);
+        // var dates = new Date(dateNaiss);
+        // var datess0 = dates.getDate() + '/'+ (dates.getMonth() + 1) + '/' +  dates.getFullYear();
+        // console.log("datess0 "+datess0);
+        // document.getElementById("dateNaiss").value = dateNaiss;
+
+///////////////////////////////////////////////////////////////
+
+
+
+
+//////////////////////////////////////////////////////////////
+
+        var civilite = url.searchParams.get("civilite");
+        console.log(" Le civilite  "+civilite);
+        // document.getElementById("civilite").value = civilite;
+
+
+
+
+
+        var date_debut = url.searchParams.get("date_debut");
+        console.log(" Le date_debut  "+date_debut);
+        // document.getElementById("date_debut").value = date_debut;
+
+
+
+        var date_fin = url.searchParams.get("date_fin");
+        console.log(" Le date_fin  "+date_fin);
+        // document.getElementById("date_fin").value = date_fin;
+
+
+
+        var id_typeabonnement = url.searchParams.get("id_typeabonnement");
+        console.log(" Le id_typeabonnement  "+id_typeabonnement);
+        // document.getElementById("type_abonnement").value = id_typeabonnement;
+        console.log(" id_typeabonnement "+id_typeabonnement);
+
+
+	
+    </script>
+
+	
+    <script src="../js_hfc/listenner.js"></script>
+		<script src="../js_hfc/connexion.js"></script>
+
+</body>
+</html>

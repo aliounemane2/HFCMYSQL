@@ -1,0 +1,54 @@
+<script type="text/javascript">
+var ladate = new Date();
+document.write("ladate.getDay() = "+ladate.getDay()+"<BR>");
+var tab_jour=new Array("Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi");
+document.write("Nous sommes un "+tab_jour[ladate.getDay()]);
+
+
+document.write(" Il est "+ladate.getHours()+ " : "+ladate.getMinutes());
+
+
+// && ladate.getHours() >=6 || ladate.getHours() <=15
+
+
+
+
+
+
+		if (tab_jour[ladate.getDay()] == "Lundi" && (ladate.getHours() >= 6) && (ladate.getHours() <= 14)){
+			// console.log("")
+			alert(" Lundi ");
+
+		}else if (tab_jour[ladate.getDay()] == "Mardi" && (ladate.getHours() >= 6) && (ladate.getHours() <= 14)){
+
+				alert(" Mardi ");
+
+		}else if (tab_jour[ladate.getDay()] == "Mercredi" && (ladate.getHours() >= 6) && (ladate.getHours() <= 14)){
+			alert(" Mercredi ");
+
+
+		}else if (tab_jour[ladate.getDay()] == "Jeudi" && (ladate.getHours() >= 6) && (ladate.getHours() <= 14)){
+			alert(" Jeudi ");
+
+		
+		}else if ( tab_jour[ladate.getDay()] == "Vendredi" && (ladate.getHours() >= 6) && (ladate.getHours() <= 14)){
+			alert(" Vendredi ");
+
+		
+		}else if (tab_jour[ladate.getDay()] == "Samedi" && (ladate.getHours() >= 6) && (ladate.getHours() <= 14)){
+
+			alert(" samedi cool ");
+			alert(ladate.getHours());
+		
+		}else if (tab_jour[ladate.getDay()] == "Dimanche" && (ladate.getHours() >= 6) && (ladate.getHours() <= 14)){
+			alert(" Dimanche ");
+
+		}else {
+
+
+		}
+
+
+
+		
+</script>
