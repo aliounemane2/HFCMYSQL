@@ -196,8 +196,23 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
                                                     <input class="form-control" type="text" required  id="nom" />
                                                 </div>
                                             </div>
-                                           
                                         </div>
+
+
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-xs-6 col-sm-6"> 
+                                                    <label class="control-label">E-mail</label>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6">
+                                                    <input class="form-control" type="text" required  id="email" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
                                     </div>
                                     <!-- End col-lg-6-- >
                                     <!--col-->
@@ -226,6 +241,22 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
 
                                                 </div>
                                             </div>
+
+
+                                            <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-xs-6 col-sm-6"> 
+                                                    <label class="control-label"></label>
+                                                </div>
+                                                    
+                                                <div class="col-xs-6 col-sm-6">
+                                                </div>
+
+                                                </div>
+                                            </div>
+
+
+
                                            
                                         </div>
 
@@ -290,7 +321,7 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
                                                         <label class="control-label">Date de début</label>
                                                     </div>
                                                     <div class="col-xs-6">
-                                                        <input class="form-control" type="date" value="" id="date_debut" />
+                                                        <input class="form-control" type="date" value="" id="date_debut" readonly="readonly"/>
                                                     </div>
                                                 </div>
                                                
@@ -302,14 +333,20 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
                                                     <div class="col-xs-6"> 
                                                         <label class="control-label">Date de Fin</label>
                                                     </div>
-                                                    <div class="col-xs-6">
-                                                        <input class="form-control" type="date" value="" id="date_fin" />
+                                                    <div class="col-xs-5">
+                                                        <input class="form-control" type="date" value="" id="date_fin" readonly="readonly" />
+                                                    </div>
+                                                    <div class="col-xs-1">
+                                                       
+                                                        <button type="button" onclick="modiferchamp()">
+                                                            <i class="fa fa-edit fa-fw"></i>
+                                                        </button>
                                                     </div>
                                                 </div>
                                                
                                             </div>
                                         </div>     
-                                        <div style="display:none;" id="seances">
+                                        <!-- <div style="display:none;" id="seances">
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-xs-6"> 
@@ -317,6 +354,49 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
                                                     </div>
                                                     <div class="col-xs-6">
                                                          <input class="form-control" type="number" id="nbseances" />
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>-->
+
+
+                                        <div style="display:none;" id="seances">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-xs-6"> 
+                                                        <label class="control-label">Nombre de tickets consommés</label>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                         <input class="form-control" type="number" id="nbseances001" readonly="readonly" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div style="display:none;" id="nbTicketsRestants">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-xs-6"> 
+                                                        <label class="control-label">Nombre de tickets restants</label>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                         <input class="form-control" type="number" id="nbTicketsRestants001" readonly="readonly" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                          <div style="display:none;" id="seancesTotal">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-xs-6"> 
+                                                        <label class="control-label">Nombre Total de Séances</label>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                         <input class="form-control" type="number" id="nbseancesTotal001"  readonly="readonly"/>
                                                     </div>
                                                 </div>
                                                
@@ -393,6 +473,12 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
     <script src="../dist/js/sb-admin-2.js"></script>
 
 	<script>
+
+    function modiferchamp(){
+
+        document.getElementById("date_fin").readOnly = false;;
+    }
+
 
     function carte_perdue(){
 
@@ -952,8 +1038,397 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
                 window.location.href = '../pages/forms.html';
         }
     </script>
+    <script>
+var nows;
+                        var currentDate = new Date()
+                        var day = currentDate.getDate()
+                        var month = currentDate.getMonth() + 1
+                        var year = currentDate.getFullYear()
+                        // var nows = year+"-"+month+"-"+day;
+                // var nows = year+"-"+month+"-"+day;
+
+                            if (day == 1){
+
+
+                                    var days = "0"+1;
+
+                                    if (month == 1){
+                                        var months = "0"+1;
+                                        nows = year+"-"+months+"-"+days;
+                                    } else if (month == 2){
+                                        var months = "0"+2;
+                                        nows = year+"-"+months+"-"+days;
+                                    }else if (month == 3){
+                                        var months = "0"+3;
+                                        nows = year+"-"+months+"-"+days;
+                                    }else if (month == 4){
+                                        var months = "0"+4;
+                                        nows = year+"-"+months+"-"+days;
+                                    }else if (month == 5){
+                                        var months = "0"+5;
+                                        nows = year+"-"+months+"-"+days;
+                                    }else if (month == 6){
+                                        var months = "0"+6;
+                                        nows = year+"-"+months+"-"+days;
+                                    }else if (month == 7){
+                                        var months = "0"+7;
+                                        nows = year+"-"+months+"-"+days;
+                                    }else if (month == 8){
+                                        var months = "0"+8;
+                                        nows = year+"-"+months+"-"+days;
+                                    }else if (month == 9){
+                                        var months = "0"+9;
+                                        nows = year+"-"+months+"-"+days;
+                                    }else {
+                                        var months = month;
+                                        nows = year+"-"+months+"-"+days;
+                                    }
+                            } else if (day == 2){
+                                        var days = "0"+2;
+                                        // nows = year+"-"+month+"-"+days;
+                                         if (month == 1){
+                                            var months = "0"+1;
+                                            nows = year+"-"+months+"-"+days;
+                                        } else if (month == 2){
+                                            var months = "0"+2;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 3){
+                                            var months = "0"+3;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 4){
+                                            var months = "0"+4;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 5){
+                                            var months = "0"+5;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 6){
+                                            var months = "0"+6;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 7){
+                                            var months = "0"+7;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 8){
+                                            var months = "0"+8;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 9){
+                                            var months = "0"+9;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else {
+                                            var months = month;
+                                            nows = year+"-"+months+"-"+days;
+                                        }
+                            }else if (day == 3){
+                                        var days = "0"+3;
+                                        // nows = year+"-"+month+"-"+days;
+                                         if (month == 1){
+                                            var months = "0"+1;
+                                            nows = year+"-"+months+"-"+days;
+                                        } else if (month == 2){
+                                            var months = "0"+2;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 3){
+                                            var months = "0"+3;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 4){
+                                            var months = "0"+4;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 5){
+                                            var months = "0"+5;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 6){
+                                            var months = "0"+6;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 7){
+                                            var months = "0"+7;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 8){
+                                            var months = "0"+8;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 9){
+                                            var months = "0"+9;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else {
+                                            var months = month;
+                                            nows = year+"-"+months+"-"+days;
+                                        }
+                            }else if (day == 4){
+                                        var days = "0"+4;
+                                        // nows = year+"-"+month+"-"+days;
+                                         if (month == 1){
+                                            var months = "0"+1;
+                                            nows = year+"-"+months+"-"+days;
+                                        } else if (month == 2){
+                                            var months = "0"+2;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 3){
+                                            var months = "0"+3;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 4){
+                                            var months = "0"+4;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 5){
+                                            var months = "0"+5;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 6){
+                                            var months = "0"+6;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 7){
+                                            var months = "0"+7;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 8){
+                                            var months = "0"+8;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 9){
+                                            var months = "0"+9;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else {
+                                            var months = month;
+                                            nows = year+"-"+months+"-"+days;
+                                        }
+                            }else if (day == 5){
+                                        var days = "0"+5;
+                                        // nows = year+"-"+month+"-"+days;
+                                         if (month == 1){
+                                            var months = "0"+1;
+                                            nows = year+"-"+months+"-"+days;
+                                        } else if (month == 2){
+                                            var months = "0"+2;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 3){
+                                            var months = "0"+3;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 4){
+                                            var months = "0"+4;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 5){
+                                            var months = "0"+5;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 6){
+                                            var months = "0"+6;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 7){
+                                            var months = "0"+7;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 8){
+                                            var months = "0"+8;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 9){
+                                            var months = "0"+9;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else {
+                                            var months = month;
+                                            nows = year+"-"+months+"-"+days;
+                                        }
+                            }else if (day == 6){
+                                        var days = "0"+6;
+                                        // nows = year+"-"+month+"-"+days;
+                                         if (month == 1){
+                                            var months = "0"+1;
+                                            nows = year+"-"+months+"-"+days;
+                                        } else if (month == 2){
+                                            var months = "0"+2;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 3){
+                                            var months = "0"+3;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 4){
+                                            var months = "0"+4;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 5){
+                                            var months = "0"+5;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 6){
+                                            var months = "0"+6;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 7){
+                                            var months = "0"+7;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 8){
+                                            var months = "0"+8;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 9){
+                                            var months = "0"+9;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else {
+                                            var months = month;
+                                            nows = year+"-"+months+"-"+days;
+                                        }
+                            }else if (day == 7){
+                                        var days = "0"+7;
+                                        // nows = year+"-"+month+"-"+days;
+                                         if (month == 1){
+                                            var months = "0"+1;
+                                            nows = year+"-"+months+"-"+days;
+                                        } else if (month == 2){
+                                            var months = "0"+2;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 3){
+                                            var months = "0"+3;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 4){
+                                            var months = "0"+4;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 5){
+                                            var months = "0"+5;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 6){
+                                            var months = "0"+6;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 7){
+                                            var months = "0"+7;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 8){
+                                            var months = "0"+8;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 9){
+                                            var months = "0"+9;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else {
+                                            var months = month;
+                                            nows = year+"-"+months+"-"+days;
+                                        }
+                            }else if (day == 8){
+                                        var days = "0"+8;
+                                        // nows = year+"-"+month+"-"+days;
+                                         if (month == 1){
+                                            var months = "0"+1;
+                                            nows = year+"-"+months+"-"+days;
+                                        } else if (month == 2){
+                                            var months = "0"+2;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 3){
+                                            var months = "0"+3;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 4){
+                                            var months = "0"+4;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 5){
+                                            var months = "0"+5;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 6){
+                                            var months = "0"+6;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 7){
+                                            var months = "0"+7;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 8){
+                                            var months = "0"+8;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 9){
+                                            var months = "0"+9;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else {
+                                            var months = month;
+                                            nows = year+"-"+months+"-"+days;
+                                        }
+                            }else if (day == 9){
+                                        var days = "0"+9;
+                                        // nows = year+"-"+month+"-"+day;
+                                         if (month == 1){
+                                            var months = "0"+1;
+                                            nows = year+"-"+months+"-"+days;
+                                        } else if (month == 2){
+                                            var months = "0"+2;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 3){
+                                            var months = "0"+3;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 4){
+                                            var months = "0"+4;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 5){
+                                            var months = "0"+5;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 6){
+                                            var months = "0"+6;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 7){
+                                            var months = "0"+7;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 8){
+                                            var months = "0"+8;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 9){
+                                            var months = "0"+9;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else {
+                                            var months = month;
+                                            nows = year+"-"+months+"-"+days;
+                                        }
+                            }else {
+                                        var days = day;
+                                        // nows = year+"-"+month+"-"+days;
+                                         if (month == 1){
+                                            var months = "0"+1;
+                                            nows = year+"-"+months+"-"+days;
+                                        } else if (month == 2){
+                                            var months = "0"+2;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 3){
+                                            var months = "0"+3;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 4){
+                                            var months = "0"+4;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 5){
+                                            var months = "0"+5;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 6){
+                                            var months = "0"+6;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 7){
+                                            var months = "0"+7;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 8){
+                                            var months = "0"+8;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else if (month == 9){
+                                            var months = "0"+9;
+                                            nows = year+"-"+months+"-"+days;
+                                        }else {
+                                            var months = month;
+                                            nows = year+"-"+months+"-"+days;
+                                        }
+                            }
+
+    </script>
     <script src="../js_hfc/abonnement.js"></script>
 	<script>
+                    var dd3;
+                    var e = document.getElementById("type_abonnement");
+
+                    e.addEventListener("change", function(){
+
+                        dd3 = document.getElementById("type_abonnement").value;
+
+                        if (dd3 == undefined){
+                            dd3 = url.searchParams.get("id_typeabonnement");
+                            // console.log(" Le id_typeabonnement  "+id_typeabonnement);
+                            // document.getElementById("type_abonnement").value = id_typeabonnement;
+                        }                 
+                        
+
+
+
+                            // alert(" KHEW BAKHOUL ");
+                          if( dd3 == 5 || dd3 == 10 || dd3 == 15 || dd3 == 16 || dd3 == 17){
+                            console.log(dd3);
+
+                          }else{
+                            console.log(dd3);
+                            //dd3 = document.getElementById("dd").value ;
+                            //alert(dd3);
+
+                          }
+                     });
+
+
+
+
+
+
+
+
 	function oublier(){
 	
 		var mysql = require('mysql');
@@ -1625,7 +2100,7 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
                                                       var idpaiement = result[0].idPaiement;
                                                       console.log(" La valeur de l' ID PAIEMENT est "+idpaiement);
 
-                                                      var sql3 = "UPDATE users_paiement SET date_debut='"+dd+"', date_fin='"+df+"', nbseances_en_cours='"+valeur_actuel+"', dateencours='"+nows+"' WHERE paiement.idPaiement="+idpaiement;;
+                                                      var sql3 = "UPDATE users_paiement SET date_debut='"+dd+"', date_fin='"+df+"', nbseances_en_cours='"+valeur_actuel+"', dateencours='"+nows+"' WHERE users_paiement.idPaiement="+idpaiement;;
                                                       
                                                       // var sql3 = "UPDATE paiement (idPaiement, date_debut, date_fin, idUser, nbseances_total, nbseances_en_cours, dateencours) VALUES ('?', '"+dd+"','"+df+"','"+result[0].idUser+"','"+result[0].nbseances_total+"','"+valeur_actuel+"','"+nows+"')";
 
@@ -1813,7 +2288,7 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
 	}
 	</script>
 	
-		 <script>
+	<script>
         
 		document.getElementById("zone").style.display='none';
 		document.getElementById("start").style.display='none';
@@ -2440,6 +2915,10 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
         console.log(" Le nom  "+profession);
         document.getElementById("profession").value = profession;
 
+        var email = url.searchParams.get("email");
+        console.log(" L'e-mail  "+email);
+        document.getElementById("email").value = email;
+
 
         // var dates = new Date(dateNaiss);
         // var datess0 = dates.getDate() + '/'+ (dates.getMonth() + 1) + '/' +  dates.getFullYear();
@@ -2494,9 +2973,49 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
         console.log(" photos "+photos);
 		
 		
-		setTimeout(function(){
+		/*
+        Ancien Bon code
+
+        setTimeout(function(){
 			console.log("PROFESSEUR ");
 		document.getElementById("type_abonnement").options[''+parseInt(id_typeabonnement)-1].selected = true; }, 1000);
+
+*/
+
+   setTimeout(function(){
+            console.log("PROFESSEUR ");
+          document.getElementById("type_abonnement").options[''+id_typeabonnement-1].selected = true; }, 1000);
+
+
+
+        if(id_typeabonnement==5 || id_typeabonnement==10 || id_typeabonnement==15 || id_typeabonnement==16 || id_typeabonnement==17){
+            
+        document.getElementById("datesss").style.display='none';
+        
+        document.getElementById("seances").style.display='block';
+        document.getElementById("seancesTotal").style.display='block';
+        document.getElementById("nbTicketsRestants").style.display='block';
+
+
+        var nbredeseancessssss = url.searchParams.get("nbseances_en_cours");
+        console.log(" Le nbredeseances  "+nbredeseancessssss);
+        console.log(" nbredeseances ");
+        document.getElementById("nbseances001").value = nbredeseancessssss;
+        //console.log(sssss11111);
+        // alert(nbredeseancessssss);
+
+
+        var nbreTotaldeSeancesss = url.searchParams.get("nbseances_total");
+        console.log(" Le nbreTotaldeSeancesss  "+nbreTotaldeSeancesss);
+        console.log(" nbreTotaldeSeancesss ");
+        document.getElementById("nbseancesTotal001").value = nbreTotaldeSeancesss;
+        //console.log(sssss22222);
+        // alert(nbreTotaldeSeancesss);
+
+         var nbTicketsRestants = parseInt(nbreTotaldeSeancesss) - parseInt(nbredeseancessssss);
+        document.getElementById("nbTicketsRestants001").value = nbTicketsRestants;
+
+    }
 
 /*
         document.write('<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAABHNCSVQICAgIfAhkiAAAAudJREFUaIHtmb9v00AUx7/XItmROqTQsYigLGxkbMRAMzCkU3YYko3NYe0C+Q/IX5CTAAm2bBkTBquwtX9AhSXY6UYslTyG2Cg48eV+OhLyZ3z39E4fvcvl7gyUlJSU/A+wnc0cTKse5h0ANcbwdGUkWhBdMbBxPGxHKiULl/GCSY0xvAbQlUifEWEQD9szmdqFynjB5E0iogSBxjFVehi2bkR5hcn4/ckIct3YCAGXMfktkdCebnEV/LNzIxEAYEDDY/Mpgmk1L8e5jH94PMKX911cXxjXWgr9GgnG3eEfHo/A9rp/A0+6QL1pXJcIrU2bgrPOrIkAQMhhpUM5m4iTzmwUWcVCh4jwMPs/ZL0zW0UAKx0iUCcbsyojJZISciOhPcYer8W0q2VQEkkJuYlQLRuwIqMlkhJyK5sCYEHGSCQl5FaEjGSsiKSEXEmICJ+zMW0ZqyIpIVcRirIBLRknIikhlxKK4Y+zsX3VuZyKpHy/BA6OgLv38zL47fDZp2xQqTOFiKSEPLdDRBhsikvL+GfnxYmkhHxNKLl5RpvSpZaZ35+McO9BFwdHyyVQJP8uOR4P26/yUrfKJFfdPoBlwV0JVap8/u5lT5QmPDUnjw/f1gauL5ZLoChowec/fwhFgC2/mdzHh3pzeYwvAkkRQLTMgmn1Drv9mDtexJJTEAEEnUke6MS47JCiCCBeZjWpCi6ENEQAgUzmyVSMTSFNEcDmTdOGkIEIYPsNwETIUAQQy0RaFXWELIgAApkF0ZV2VRUhSyKAaAMAW7svKCEjZFEEEMgkJ9OZUXWRkGURYMsGkHdvUGKTkAMRYMup+ffXD9H+yfMGA3tkNMvq0ceRCCCxNcdU6RFgfgCrN4GTF85EANmH82Ba9dh8yoCGwVx8/rbtTASQ/dMctm5i8lsE0trhiDBwLQJofNLwgslpcs85lUjnoju7bbS/z3jBpEagTvIaX0vjyUtjFMMfb/s6XFJSslv+AGM7PApaIr/tAAAAAElFTkSuQmCC" />');   
@@ -2605,7 +3124,7 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
 
                 var email = url.searchParams.get("email");
                 var telephone = url.searchParams.get("telephone");
-
+                var emails = document.getElementById("email").value;
 
 
 
@@ -2644,7 +3163,7 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
                      con.connect(function(err) {
                       // if (err) throw err;
                       console.log("Connected!");
-                      var sql3 = "UPDATE users_utilisateur2 SET civilite='"+civilite+"', nom ='"+nom+"',prenom='"+prenom+"', dateNaiss='"+dateNaiss+"', profession='"+profession+"', photo='"+pphhootooss+"' WHERE users_utilisateur2.id="+idUser;
+                      var sql3 = "UPDATE users_utilisateur2 SET civilite='"+civilite+"', nom ='"+nom+"',prenom='"+prenom+"', dateNaiss='"+dateNaiss+"', profession='"+profession+"', email='"+emails+"', photo='"+pphhootooss+"' WHERE users_utilisateur2.id="+idUser;
 
                       console.log(sql3);
                       con.query(sql3, function (err, result) {
@@ -2698,11 +3217,11 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
 
                         if (answers) {
 
-
+                                var emails = document.getElementById("email").value;
                                 con.connect(function(err) {
                       // if (err) throw err;
                                 console.log("Connected!");
-                                var sql3 = "UPDATE users_utilisateur2 SET civilite='"+civilite+"', nom ='"+nom+"',prenom='"+prenom+"', dateNaiss='"+dateNaiss+"', profession='"+profession+"', photo='"+pphhootooss+"' WHERE users_utilisateur2.id="+idUser;
+                                var sql3 = "UPDATE users_utilisateur2 SET civilite='"+civilite+"', nom ='"+nom+"',prenom='"+prenom+"', dateNaiss='"+dateNaiss+"', email='"+emails+"', profession='"+profession+"', photo='"+pphhootooss+"' WHERE users_utilisateur2.id="+idUser;
 
                                   console.log(sql3);
                                   con.query(sql3, function (err, result) {
@@ -2782,9 +3301,7 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
 
                 ////////// var date_debut2 = document.getElementById("date_debut").value;
 
-                
-
-
+            
 
                 // document.getElementById("date_debut").value = date_debut;
 
@@ -2843,16 +3360,17 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
                 
 
 
-                
-
-
-
                 var nbseances_total = url.searchParams.get("nbseances_total");
                 console.log(" ID nbseances_total "+nbseances_total);
 
-                var nbseances0000 = document.getElementById("nbseances").value;
+                
+
+
+                var nbseances0000 = document.getElementById("nbseances001").value;
                 if ( nbseances0000!= ''){
-                    nbseances_total = parseInt(nbseances_total) + parseInt(nbseances0000);
+                    // nbseances_total = parseInt(nbseances_total) + parseInt(nbseances0000);
+                    nbseances_total = parseInt(nbseances_total);
+
                     var date_fin2 = '';
                     var date_debut2 = '';
 
@@ -2861,7 +3379,6 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
                 }
 
                 
-
                 // document.getElementById("nbseances_total").value = nbseances_total;
 
 
@@ -2875,7 +3392,6 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
                 console.log(" ID dateencours   "+dateencours);
                 // document.getElementById("dateencours").value = dateencours;
 
-
                 var id_typeabonnement = url.searchParams.get("id_typeabonnement");
                 console.log(" Le id_typeabonnement  "+id_typeabonnement);
                 document.getElementById("type_abonnement").value = id_typeabonnement;
@@ -2883,7 +3399,6 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
 
                 
                 if (date_autorisation == "NULL" || date_autorisation == ""){
-
 
                     con.connect(function(err) {
                       // if (err) throw err;
@@ -2899,19 +3414,95 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
                       });
 
                       });
+                    
+                    ddddd3 = document.getElementById("type_abonnement").value;
 
 
-                        if (dd == 5 || dd == 10 || dd == 15 || dd == 16 || dd == 17){
+
+
+                    /*
+                    for (i=0; i<= result.length-1;i++){
+                        var e = document.getElementById("type_abonnement");
+
+                        e.innerHTML= e.innerHTML + "<option value="+result[i].id+">"+result[i].nom+" == > "+result[i].montant+"  F CFA "+"</option><br/>";
+                      //         e.innerHTML= e.innerHTML + "<option value="+result[i].id+">"+result[i].nom+" == > "+result[i].montant+"</option><br/>";
+                      
+                        document.getElementById("dd").value = result[0].id;
+
+                    }
+                    */
+
+
+                        if (dd3 == undefined){
+                            dd3 = url.searchParams.get("id_typeabonnement");
+                            // console.log(" Le id_typeabonnement  "+id_typeabonnement);
+                            // document.getElementById("type_abonnement").value = id_typeabonnement;
+                        }  
+
+                        // alert(" dd3 "+dd3);
+
+
+                        if (dd3 == 5 || dd3 == 10 || dd3 == 15 || dd3 == 16 || dd3 == 17){
+
+                            // alert(" BAKHNA 001 ");
                                 // alert(" pas bon ");
+
+
+                              con.connect(function(err) {
+                                              // if (err) throw err;
+                                              console.log("Connected!");
+
+                                    var idUser = url.searchParams.get("idUser");
+                                    console.log(" ID USER   "+idUser);
+                                    document.getElementById("idUser").value = idUser;
+                                    // alert("IDUSER "+idUser);
+
+                                              var sql2 = "UPDATE users_utilisateur2 SET id_typeabonnement='"+dd3+"' WHERE users_utilisateur2.id="+idUser;
+                                              // alert(sql2);
+
+                                              console.log(sql2);
+                                              con.query(sql2, function (err, result) {
+                                                // if (err) throw err;
+                                                console.log("1 record inserted");
+                                                //alert(" DANS LA REQUETE CEST BON ");
+                                              });
+
+                                    });
+
+
+
                                 con.connect(function(err) {
                                   // if (err) throw err;
                                   console.log("Connected!");
                                   console.log("date_debut"+date_debut2);
                                   console.log("date_fin"+date_fin2);
 
+
+                                  //alert(" nbseancesTotal001 == >> "+dfhop);
+                                  //alert(" nbTicketsRestants001 == >> "+dfhop09);
+                                  //alert(" nbseances001 == >> "+dfhop566);
+
+                                    var nbseances_totalsss;
+                                    if (dd3 == 5 || dd3 == 10 || dd3 ==15){
+
+                                        nbseances_totalsss = parseInt(nbseances_total) + parseInt(1);
+
+                                    }else if (dd3 == 16){
+
+                                        nbseances_totalsss = parseInt(nbseances_total) + parseInt(5);
+
+                                    }else if (dd3 == 17){
+
+                                        nbseances_totalsss = parseInt(nbseances_total) + parseInt(10);
+
+                                    }else{
+                                        
+                                    }
+
+
                                   // date_debut='"+date_debut2+"',
 
-                                  var sql3 = "UPDATE users_paiement SET date_fin ='"+""+"', nbseances_total='"+nbseances_total+"', nbseances_en_cours='"+nbseances_en_cours+"', dateencours='"+dateencours+"', date_autorisation='"+""+"' WHERE users_paiement.idPaiement="+idPaiement;
+                                  var sql3 = "UPDATE users_paiement SET date_fin ='"+""+"', nbseances_total='"+nbseances_totalsss+"', nbseances_en_cours='"+nbseances_en_cours+"', dateencours='"+dateencours+"', date_autorisation='"+""+"' WHERE users_paiement.idPaiement="+idPaiement;
 
                                   console.log(sql3);
                                   con.query(sql3, function (err, result) {
@@ -2927,6 +3518,9 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
 
                             // alert(" bon ");
 
+                            // alert("BAKHNA 002 ");
+
+
                              con.connect(function(err) {
                                   // if (err) throw err;
                                   console.log("Connected!");
@@ -2935,7 +3529,7 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
 
                                   // date_debut='"+date_debut2+"',
 
-                                  var sql3 = "UPDATE users_paiement SET date_fin ='"+date_fin22+"' , date_autorisation='"+""+"' WHERE users_paiement.idPaiement="+idPaiement;
+                                  var sql3 = "UPDATE users_paiement SET date_fin ='"+date_fin22+"' , date_autorisation='"+""+"', nbseances_en_cours=0, nbseances_total=0 WHERE users_paiement.idPaiement="+idPaiement;
 
                                   console.log(sql3);
                                   con.query(sql3, function (err, result) {
@@ -2946,6 +3540,45 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
                                     });
 
                                 });
+
+
+                             var emailsss = url.searchParams.get("email");
+                                // alert(emailsss);
+
+                                if (emailsss != ""){
+
+                                    var nodemailer = require('nodemailer');
+
+                                    var transporter = nodemailer.createTransport({
+                                      service: 'gmail',
+                                      auth: {
+                                        user: 'elitefitnessclubkebe@gmail.com',
+                                        pass: 'Elfit2017'
+                                      }
+                                    });
+
+                                    var mailOptions = {
+                                      from: 'elitefitnessclubkebe@gmail.com',
+                                      to: emailsss,
+                                      subject: 'Elite Fitness Club',
+                                        text: ' Bonjour  '+nom+' '+prenom+', \n\n nous vous informons que votre abonnement à la salle Elite Fitness Kébé a été renouvelé avec succès.\n La nouvelle date d\'échéance est fixée au '+date_fin22+'\n\n Merci de votre confiance. \n\n L\'équipe Elite Fitness Kébé.'
+
+                                    };
+
+
+
+                                    transporter.sendMail(mailOptions, function(error, info){
+                                      if (error) {
+                                        console.log(error);
+                                      } else {
+                                        console.log('Email sent: ' + info.response);
+                                        // window.location.href = '../pages/forms.html';
+
+                                      }
+                                    });
+
+                                }
+
 
 
                         }
@@ -3022,7 +3655,7 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
 								var d = document.getElementById("type_abonnement").value;
 
 
-                               if (d == 1 || d == 6 || d == 11 || d == 12 || d == 13 || d== 18){
+                               if (d == 1 || d == 6 || d == 11 || d == 12 || d == 13 || d== 18 || d == 19){
 
 
 
@@ -9690,7 +10323,7 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
             }
     </script>
 	
-	<script>
+<script>
 	function event_automatique(){
 	
 	d = document.getElementById("type_abonnement").value;
@@ -9708,8 +10341,16 @@ and (min-device-width : 768px) and (max-device-width : 1024px){
 	// console.log(dd);
 
 	// alert(d);
+
+    if (d != 5 || d != 10 || d != 15 || d != 16 || d != 17){
+        
+        document.getElementById("nbTicketsRestants").style.display='none';
+        document.getElementById("seancesTotal").style.display='none';
+
+    }
+        
 	
-	if (d == 1 || d == 6 || d == 11 || d == 12 || d == 13){
+	if (d == 1 || d == 6 || d == 11 || d == 12 || d == 13 || d == 19){
 		// Mensuel
 			
 

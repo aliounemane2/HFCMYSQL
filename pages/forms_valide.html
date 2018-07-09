@@ -152,10 +152,7 @@ video{
                                     <input type="button" id="savefile" class="btn btn-primary" value="Prendre Photo" style="display:none;"/> 
                                     
 
-                                    
-                                         
-                                    
-                          
+                                                     
 					
 					
                         <!-- <img src="../img/photo.png" class="img-circle" style="margin-top:10%; max-width: 50%; max-height: 50%;"> -->
@@ -223,6 +220,21 @@ video{
                                             </div>
                                            
                                         </div>
+
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-xs-6 col-sm-6"> 
+                                                    <label class="control-label">Email</label>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6">
+                                                    <input class="form-control" type="text" required  id="email" />
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+
+
                                     </div>
                                     <!-- End col-lg-6-- >
                                     <!--col-->
@@ -236,7 +248,6 @@ video{
                                                      <input class="form-control" required type="date" value="" id="dateNaiss"/>
                                                 </div>
                                             </div>
-                                           
                                         </div>
 
                                         <div class="form-group">
@@ -261,6 +272,20 @@ video{
                                             </div>
                                            
                                         </div>
+
+
+
+
+                                         <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-xs-6 col-sm-6"> 
+                                                    <label class="control-label"></label>
+                                                </div>
+                                                <div class="col-xs-6 col-sm-6">
+                                                </div>
+                                            </div>
+                                        </div>
+
 
                                         <div class="form-group">
                                             <div class="row">
@@ -323,7 +348,7 @@ video{
                                                         <label class="control-label">Date de début</label>
                                                     </div>
                                                     <div class="col-xs-6">
-                                                        <input class="form-control" type="date"  id="date_debut"/>
+                                                        <input class="form-control" type="date"  id="date_debut" readonly=true/>
                                                     </div>
                                                 </div>
                                                
@@ -335,11 +360,17 @@ video{
                                                     <div class="col-xs-6"> 
                                                         <label class="control-label">Date de Fin</label>
                                                     </div>
-                                                    <div class="col-xs-6">
-                                                        <input class="form-control" type="date" value="" id="date_fin" />
+                                                    <div class="col-xs-5">
+                                                        <input class="form-control" type="date" value="" id="date_fin" readonly=true />
                                                         <input type="hidden" id="idPaiement"/>
                                                         <input class="form-control" type="hidden" value="" id="idUser" />
 
+                                                    </div>
+                                                    <div class="col-xs-1">
+                                                       
+                                                        <button type="button" onclick="modiferchamp()">
+                                                            <i class="fa fa-edit fa-fw"></i>
+                                                        </button>
                                                     </div>
                                                 </div>
                                                
@@ -349,15 +380,47 @@ video{
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-xs-6"> 
-                                                        <label class="control-label">Nombre de Séances</label>
+                                                        <label class="control-label">Nombre de tickets consommés </label>
                                                     </div>
                                                     <div class="col-xs-6">
-                                                         <input class="form-control" type="number" id="nbseances" />
+                                                         <input class="form-control" type="number" id="nbseances001" readonly="readonly"/>
                                                     </div>
                                                 </div>
                                                
                                             </div>
                                         </div>
+
+
+                                         <div style="display:none;" id="nbTicketsRestants">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-xs-6"> 
+                                                        <label class="control-label">Nombre de tickets restants </label>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                         <input class="form-control" type="number" id="nbTicketsRestants001" readonly="readonly"/>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+
+
+
+                                          <div style="display:none;" id="seancesTotal">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-xs-6"> 
+                                                        <label class="control-label">Nombre Total de Séances</label>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                         <input class="form-control" type="number" id="nbseancesTotal001" readonly="readonly" />
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+
 
                                         <div class="form-group">
                                                 <div class="row">
@@ -429,6 +492,11 @@ video{
     <script src="../js_hfc/abonnement.js"></script>
 	<script>
 	
+
+       function modiferchamp(){
+
+        document.getElementById("date_fin").readOnly = false;;
+    }
 	
 	function oublier(){
 	
@@ -1288,6 +1356,12 @@ video{
 	</script>
     <script>
 
+    function convert2(str)
+    {
+      str = str.replace(/'/g, "\\'");
+      return str;
+    }
+
     function message(){
 
             var check;
@@ -1367,33 +1441,6 @@ video{
 
         */
 
-        /*
-
-        var check;
-            var civilite = document.getElementById('civilite').value;
-            var prenom = document.getElementById('prenom').value;
-            var nom = document.getElementById('nom').value;
-            var telephone = document.getElementById('telephone').value;
-            var adresse = document.getElementById('adresse').value;
-            // var profession = document.getElementById('profession').value;
-            var profession = "";
-
-            var ville = "";
-            var email = document.getElementById('email').value;
-            var datedebut = document.getElementById('datedebut').value;
-            var datefin = document.getElementById('datefin').value;
-            var type_abonnement = document.getElementById('type_abonnement').value;
-            var prenom1 = document.getElementById('prenom1').value;
-            var nom1 = document.getElementById('nom1').value;
-            var telephone1 = document.getElementById('telephone1').value;
-            var prenom2 = document.getElementById('prenom2').value;
-            var nom2 = document.getElementById('nom2').value;
-            var telephone2 = document.getElementById('telephone2').value;
-            var identifiantcarte = "";
-            var lieuNaiss = "";
-            var dateNaiss = document.getElementById('dateNaiss').value;
-
-            */
 
 
             console.log('******* VALEUR ******');
@@ -1662,7 +1709,7 @@ video{
            }
         },false);
 		
-		
+/*		
 		document.getElementById("savefile").addEventListener('click',function(){
             console.log(" COOL 2222 ");
             // alert(' COOL 000');
@@ -1688,6 +1735,8 @@ video{
              }
         },false);
 
+*/
+
 
 
 
@@ -1696,33 +1745,49 @@ video{
 				//alert(' COOL ok ');
 				console.log(" OKKK 1111 ");
 				console.log(" OKKK 2222 ");
+                if(enabled){
+                    enabled = true;
 
 				
-				enabled = true;
-				WebCamera.attach('#camdemo');
-				console.log("The camera has been started");
-				document.getElementById("start").style.display='none';
-				document.getElementById("savefile").style.display='none';
-				document.getElementById("savefile1").style.display='block';
-				document.getElementById("zone").style.marginLeft = "-4px";
-				document.getElementById("zone").style.marginTop = "-175px";
-				document.getElementById("savefile2").style.display='block';
-				document.getElementById("capturetof").style.display='block';
-				
-				document.getElementById("capturetof").style.marginTop="20px";
-				document.getElementById("capturetof").style.marginLeft="10px";
+    				// enabled = true;
+    				// WebCamera.attach('#camdemo');
+    				console.log("The camera has been started");
+    				document.getElementById("start").style.display='none';
+    				document.getElementById("savefile").style.display='none';
+    				document.getElementById("savefile1").style.display='block';
+    				document.getElementById("zone").style.marginLeft = "-4px";
+    				document.getElementById("zone").style.marginTop = "-175px";
+    				document.getElementById("savefile2").style.display='block';
+    				document.getElementById("capturetof").style.display='block';
+    				document.getElementById("capturetof").style.marginTop="20px";
+    				document.getElementById("capturetof").style.marginLeft="10px";
+    				// document.getElementById("capturetof").style.height="248px";
 
-				// document.getElementById("capturetof").style.height="248px";			
-				
+                    // alert(' COOL 0011');
+
+                    console.log(" COOL 3333 ");
+                    WebCamera.snap(function(data_uri) {
+                        // Save the image in a variable
+                        var imageBuffer = processBase64Image(data_uri);
+                        // Start the save dialog to give a name to the file
+                        var ess = document.getElementById("capturetof");
+                        console.log(" data urrlll "+data_uri);
+                        console.log(" DATA YRL "+processBase64Image(data_uri));
+
+                        console.log(" DATA URL@@@@ "+data_uri);
+                        ess.setAttribute("src", ""+data_uri);
+                        document.getElementById("camdemo").style.display='none';
+                                             
+                        });
+
+                 }else{
+                        // alert(' COOL 0022');
+                        console.log("Please enable the camera first to take the snapshot !");
+                 }
+
+
             },false);
-			
-
-
-
-
-
-
-        
+        			        
 
     </script>
 
@@ -1745,10 +1810,7 @@ video{
               if (matches.length !== 3) {
                   return new Error('Invalid input string');
               }
-
-
               console.log(" COOL 1111 ");
-
               response.type = matches[1];
               response.data = new Buffer(matches[2], 'base64');
 
@@ -1763,7 +1825,6 @@ video{
 
              if(enabled){
 
-                
                 document.getElementById("camdemo").style.display='none';
                 document.getElementById("zone").style.display='block';
                 document.getElementById("capturetof").style.display='block';
@@ -1772,67 +1833,36 @@ video{
                 document.getElementById("savefile1").style.marginTop = "1px";
                 document.getElementById("savefile2").style.marginTop = "1px";
                 document.getElementById("zone").style.marginBottom = "0px";
-				
+				                        
+                
+                WebCamera.snap(function(data_uri) {
 
 
-
-
-
-                    console.log(" COOL 3333 ");
-
-                    WebCamera.snap(function(data_uri) {
-                        // Save the image in a variable
                         var imageBuffer = processBase64Image(data_uri);
-                        // Start the save dialog to give a name to the file
-                        var ess = document.getElementById("capturetof");
+                        var ess1 = document.getElementById("capturetof");
+                        // alert(" COOOL ");
+                        // ess1.setAttribute("src", "");
+                        ess1.setAttribute("src", ""+data_uri);
+                        document.getElementById("capturetof1").value = data_uri;
+
+
+                }); 
+
+                /*
+                    WebCamera.snap(function(data_uri) {
+                        var imageBuffer = processBase64Image(data_uri);
+                        var ess1 = document.getElementById("capturetof");
                         console.log(" data urrlll "+data_uri);
                         console.log(" DATA YRL "+processBase64Image(data_uri));
-
-                        //var img = canvas.toDataURL("image/png");
-                        /////// var item_image = data_uri.replace(/^data:image\/(png|jpg|jpeg);base64,/, "") ;
-                        /////// ess.setAttribute("src","data:image/png;base64,"+item_image);
-
                         console.log(" DATA URL@@@@ "+data_uri);
-                        ess.setAttribute("src", ""+data_uri);
-						document.getElementById("capturetof1").value = data_uri;
+                        ess1.setAttribute("src", "");
+                        ess1.setAttribute("src", ""+data_uri);
+                        // Ancien le bon code
+                        // document.getElementById("capturetof1").value = data_uri;
 
+                     }); 
 
-
-
-
-
-
-                        /*
-                        dialog.showSaveDialog({
-                            filters: [
-                                { name: 'Images', extensions: ['png'] },
-                            ]
-                        }
-
-
-                        ,function (fileName) {
-                               if (fileName === undefined){
-                                    console.log("You didn't save the file because you exit or didn't give a name");
-                                    return;
-                               }
-                               // If the user gave a name to the file, then save it
-                               // using filesystem writeFile function
-                               fs.writeFile(fileName, imageBuffer.data, function(err) {
-                                   if(err){
-                                       console.log("Cannot save the file :'( time to cry !");
-                                   }else{
-                                       alert("Image saved succesfully");
-                                   }
-                               });
-
-
-                        });
-                        */
-
-
-                     });
-        // document.getElementById("capturetof").style.display='block';
-        //     document.getElementById("camdemo").style.display='none';
+                */                   
 
              }else{
                     console.log("Please enable the camera first to take the snapshot !");
@@ -1992,6 +2022,12 @@ video{
         document.getElementById("profession").value = profession;
        // profession
 
+        //  Email
+        var email = url.searchParams.get("email");
+        document.getElementById("email").value = email;
+
+
+
 
         // var dates = new Date(dateNaiss);
         // var datess0 = dates.getDate() + '/'+ (dates.getMonth() + 1) + '/' +  dates.getFullYear();
@@ -2039,16 +2075,60 @@ video{
 		console.log(" ccccccccccccccccccccccc ");
 		var sssss = document.getElementById("type_abonnement").options[id_typeabonnements];
 		console.log(sssss);
+
+
+
+ 
+
+
+
+        
         // document.getElementById("type_abonnement").value = id_typeabonnement;
 		
 		
 		// document.getElementById("type_abonnement").options[''+id_typeabonnements].selected = true;
 		
-		
+	   // document.getElementById("type_abonnement").options[''+id_typeabonnements-1].selected = true; }, 1000);
+
 		
     setTimeout(function(){
 			console.log("PROFESSEUR ");
-		  document.getElementById("type_abonnement").options[''+id_typeabonnements].selected = true; }, 1000);
+		  document.getElementById("type_abonnement").options[''+id_typeabonnements-1].selected = true; }, 1000);
+
+
+    if  (id_typeabonnements==5 || id_typeabonnements==10 || id_typeabonnements==15 || id_typeabonnements==16 || id_typeabonnements==17){
+
+        // alert(" Les champs cacheés ");
+        document.getElementById("datesss").style.display='none';
+
+        
+        document.getElementById("seances").style.display='block';
+        document.getElementById("seancesTotal").style.display='block';
+        document.getElementById("nbTicketsRestants").style.display='block';
+
+
+        var nbredeseancessssss = url.searchParams.get("nbseances_en_cours");
+        console.log(" Le nbredeseances  "+nbredeseancessssss);
+        console.log(" nbredeseances ");
+        document.getElementById("nbseances001").value = nbredeseancessssss;
+        //console.log(sssss11111);
+        // alert(nbredeseancessssss);
+
+
+        var nbreTotaldeSeancesss = url.searchParams.get("nbseances_total");
+        console.log(" Le nbreTotaldeSeancesss  "+nbreTotaldeSeancesss);
+        console.log(" nbreTotaldeSeancesss ");
+        document.getElementById("nbseancesTotal001").value = nbreTotaldeSeancesss;
+        //console.log(sssss22222);
+        // alert(nbreTotaldeSeancesss);
+
+        var nbTicketsRestants = parseInt(nbreTotaldeSeancesss) - parseInt(nbredeseancessssss);
+        document.getElementById("nbTicketsRestants001").value = nbTicketsRestants;
+
+        document.getElementById("type_abonnement").options[''+id_typeabonnements-1].selected = true;
+
+
+    }
     
 		
 		// console.log(ss);
@@ -2156,6 +2236,7 @@ idUser
 
         var idUsersss = url.searchParams.get("idUser");
         console.log(" idUsersss   "+idUsersss);
+        console.log(url);
 
         var mysql = require('mysql');
 
@@ -2199,27 +2280,17 @@ idUser
 
 
     <script>
+
         function miseajour(){
-
             
-
-                var mysql = require('mysql');
-
-            /*
-                var con = mysql.createConnection({
-                  host: "109.107.36.85",
-                  user: "admin",
-                  password: "lkrkas8g20fpixj3",
-                  database: "hfc_db"
-                });
-            */
+            var mysql = require('mysql');
                 
-                    var con = mysql.createConnection({
-                      host: "localhost",
-                      user: "root",
-                      password: "",
-                      database: "hfc_db"
-                    });
+            var con = mysql.createConnection({
+              host: "localhost",
+              user: "root",
+              password: "",
+              database: "hfc_db"
+            });
                 
 
                 
@@ -2236,6 +2307,8 @@ idUser
 
                 var dateNaiss = document.getElementById("dateNaiss").value;
                 console.log("dateNaiss"+dateNaiss);
+
+                
 
                 //var idUser = document.getElementById("idUser").value;
                 // console.log("idUser"+idUser);
@@ -2297,17 +2370,25 @@ idUser
                 if (answer) {
 
 
-                     con.connect(function(err) {
+                    con.connect(function(err) {
                       // if (err) throw err;
-                      console.log("Connected!");
-                      var sql3 = "UPDATE users_utilisateur2 SET civilite='"+civilite+"', nom ='"+nom+"',prenom='"+prenom+"', dateNaiss='"+dateNaiss+"', profession='"+profession+"', photo='"+pphhootooss+"' WHERE users_utilisateur2.id="+idUser;
+                    console.log("Connected!");
+                    //  Le bon code cest ok 
+                    // var sql3 = "UPDATE users_utilisateur2 SET civilite='"+civilite+"', nom ='"+nom+"',prenom='"+prenom+"', dateNaiss='"+dateNaiss+"', profession='"+profession+"', photo='"+pphhootooss+"' WHERE users_utilisateur2.id="+idUser;
 
-                      console.log(sql3);
-                      con.query(sql3, function (err, result) {
+
+                    // alert(" Email 0 ==> "+email);
+
+
+                    var sql3 = "UPDATE users_utilisateur2 SET civilite='"+civilite+"', nom ='"+convert2(nom)+"',prenom='"+convert2(prenom)+"', dateNaiss='"+dateNaiss+"', profession='"+convert2(profession)+"', email='"+email+"', photo='"+pphhootooss+"' WHERE users_utilisateur2.id="+idUser;
+
+                    console.log(sql3);
+                    
+                    con.query(sql3, function (err, result) {
                         // if (err) throw err;
                         console.log("1 record inserted");
 
-                                   var nodemailer = require('nodemailer');
+                                var nodemailer = require('nodemailer');
 
                                 var transporter = nodemailer.createTransport({
                                   service: 'gmail',
@@ -2353,11 +2434,14 @@ idUser
 
                         if (answers) {
 
+                                // alert(" Email "+email);
+                                // alert(" Email ==>> "+email);
+                                var refemail = document.getElementById("email").value; 
 
                                 con.connect(function(err) {
                       // if (err) throw err;
                                 console.log("Connected!");
-                                var sql3 = "UPDATE users_utilisateur2 SET civilite='"+civilite+"', nom ='"+nom+"',prenom='"+prenom+"', dateNaiss='"+dateNaiss+"', profession='"+profession+"', photo='"+pphhootooss+"' WHERE users_utilisateur2.id="+idUser;
+                                var sql3 = "UPDATE users_utilisateur2 SET civilite='"+civilite+"', nom ='"+convert2(nom)+"',prenom='"+convert2(prenom)+"', dateNaiss='"+dateNaiss+"', profession='"+convert2(profession)+"', email='"+refemail+"', photo='"+pphhootooss+"' WHERE users_utilisateur2.id="+idUser;
 
                                   console.log(sql3);
                                   con.query(sql3, function (err, result) {
@@ -2385,17 +2469,6 @@ idUser
 
 
                 var mysql = require('mysql');
-
-/*
-                var con = mysql.createConnection({
-                  host: "109.107.36.85",
-                  user: "admin",
-                  password: "lkrkas8g20fpixj3",
-                  database: "hfc_db"
-                });
- */
-
-
 
                 var con = mysql.createConnection({
                   host: "localhost",
@@ -2427,10 +2500,8 @@ idUser
 
 
 
-
                 ////////// var date_debut2 = document.getElementById("date_debut").value;
 
-                
 
 
 
@@ -2497,7 +2568,7 @@ idUser
                 var nbseances_total = url.searchParams.get("nbseances_total");
                 console.log(" ID nbseances_total "+nbseances_total);
 
-                var nbseances0000 = document.getElementById("nbseances").value;
+                var nbseances0000 = document.getElementById("nbseances001").value;
                 if ( nbseances0000!= ''){
                     nbseances_total = parseInt(nbseances_total) + parseInt(nbseances0000);
                     var date_fin2 = '';
@@ -2584,7 +2655,7 @@ idUser
 
                 }else {
 
-                        con.connect(function(err) {
+                con.connect(function(err) {
                   // if (err) throw err;
                   console.log("Connected!");
 
@@ -2648,6 +2719,10 @@ idUser
 
 
     <script>
+
+       
+
+
         function renouvellement_abonnement(){
 
 
@@ -2763,11 +2838,12 @@ idUser
                 var nbseances_total = url.searchParams.get("nbseances_total");
                 console.log(" ID nbseances_total "+nbseances_total);
 
-                var nbseances0000 = document.getElementById("nbseances").value;
+                var nbseances0000 = document.getElementById("nbseances001").value;
                 if ( nbseances0000!= ''){
-                    nbseances_total = nbseances_total + nbseances0000;
+                    nbseances_total = parseInt(nbseances_total);
+                    // Ancien code nbseances0000
                 }else {
-                    nbseances_total = nbseances_total;
+                    nbseances_total = parseInt(nbseances_total);
                 }
 
                 
@@ -2785,10 +2861,16 @@ idUser
                 console.log(" ID dateencours   "+dateencours);
                 // document.getElementById("dateencours").value = dateencours;
 
-                
-                var dd = document.getElementById("dd").value;
+                var dd = url.searchParams.get("id_typeabonnement");
+                var nbseances_totalsss;
 
-                if (dd == 5 || dd == 10 || dd == 15 || dd == 16 || dd == 17){
+                
+                //var dd = document.getElementById("dd").value;
+                // alert("La valeur de dd ");
+                // alert(dd);
+
+
+                if (dd3 == 5 || dd3 == 10 || dd3 == 15 || dd3 == 16 || dd3 == 17){
 
                     con.connect(function(err) {
                       // if (err) throw err;
@@ -2797,13 +2879,107 @@ idUser
                           console.log("date_fin"+date_fin2);
 
                           // date_debut='"+date_debut2+"',
+                         if (dd3== 5 ||dd3 == 10 || dd3== 15){
+                                nbseances_totalsss = parseInt(nbseances_total)+parseInt(1);
+                         }else if (dd3 ==16){
+                                nbseances_totalsss = parseInt(nbseances_total)+parseInt(5);
 
-                          var sql3 = "UPDATE users_paiement SET date_fin ='"+""+"', nbseances_total='"+nbseances_total+"', nbseances_en_cours='"+nbseances_en_cours+"', dateencours='"+dateencours+"' WHERE users_paiement.idPaiement="+idPaiement;
+                         }else if (dd3 == 17){
+                                nbseances_totalsss = parseInt(nbseances_total)+parseInt(10);
 
-                            console.log(sql3);
+                         }else{
+
+                         }
+
+
+
+                         con.connect(function(err) {
+                                              // if (err) throw err;
+                                              console.log("Connected!");
+
+                                    var idUser = url.searchParams.get("idUser");
+                                    console.log(" ID USER   "+idUser);
+                                    document.getElementById("idUser").value = idUser;
+                                    // alert("IDUSER "+idUser);
+
+                                              var sql22 = "UPDATE users_utilisateur2 SET id_typeabonnement='"+dd3+"' WHERE users_utilisateur2.id="+idUser;
+                                              // alert(sql2);
+
+                                              console.log(sql22);
+                                              con.query(sql22, function (err, result) {
+                                                // if (err) throw err;
+                                                console.log("1 record inserted");
+                                                //alert(" DANS LA REQUETE CEST BON ");
+                                              });
+
+                                    });
+
+
+
+
+                          var sql3 = "UPDATE users_paiement SET date_debut='"+nows+"', date_fin='"+""+"', nbseances_total='"+nbseances_totalsss+"', nbseances_en_cours='"+nbseances_en_cours+"', dateencours='"+dateencours+"' WHERE users_paiement.idPaiement="+idPaiement;
+
+                              console.log(sql3);
+                              // alert(" sql3 "+sql3);
+                            
+                              // alert(" JOURNÉE ")
+
                               con.query(sql3, function (err, result) {
                                 // if (err) throw err;
                                 console.log("1 record inserted");
+
+                                //alert(" nb seances total "+nbseances_total);
+                                //alert(" nb seances en cours  "+nbseances_en_cours);
+
+                                // Debut de mon code a mettre
+
+
+                                var emailsss = url.searchParams.get("email");
+                                // alert(" E mail "+emailsss);
+                            
+                            
+                                var nodemailer = require('nodemailer');
+
+                                var transporter = nodemailer.createTransport({
+                                  service: 'gmail',
+                                  auth: {
+                                    user: 'elitefitnessclubkebe@gmail.com',
+                                    pass: 'Elfit2017'
+                                  }
+                                });
+
+                                /*
+
+                                var mailOptions = {
+                                  from: 'elitefitnessclubkebe@gmail.com',
+                                  to: emailsss,
+                                  subject: 'Elite Fitness Club',
+                                  text: ' Nom : '+nom+' \n \n \n \n \n \n   Prenom : '+prenom+'  \n \n \n \n \n \n   Civilité : '+civilite+' \n \n \n \n \n \n  Date de Naissance :'+dateNaiss+' \n \n \n \n \n \n Profession : '+profession+' \n \n \n \n \n \n Adresse E-mail :'+emailsss+' \n \n \n \n \n \n Nombre de Séances    : '+nbseances_total
+                                };
+
+                                transporter.sendMail(mailOptions, function(error, info){
+                                  if (error) {
+                                    console.log(error);
+                                  } else {
+                                    console.log('Email sent: ' + info.response);
+                                    // window.location.href = '../pages/forms.html';
+
+                                  }
+                                });
+
+                                */
+
+
+
+
+
+
+
+
+
+
+
+                                // Fin de mon code a mettre
                                 
                                 alert(" Le renouvellement de l'abonnement est bien prise en compte. " , " Ellite Fitness Club ");
 
@@ -2814,27 +2990,85 @@ idUser
 
                 }else{
 
-
+                        // alert(" RENOUVELLEMENT ");
+                        // alert(" email ");
                         con.connect(function(err) {
                       // if (err) throw err;
                                   console.log("Connected!");
                                   console.log("date_debut"+date_debut2);
                                   console.log("date_fin"+date_fin2);
+                                  // alert(" date "+date_fin2);
 
                                   // date_debut='"+date_debut2+"',
 
-                                  var sql3 = "UPDATE users_paiement SET date_fin ='"+date_fin2+"', nbseances_total='"+0+"', nbseances_en_cours='"+""+"', dateencours='"+""+"' WHERE users_paiement.idPaiement="+idPaiement;
+                                  //alert(" nb seances total "+nbseances_total);
+                                    // alert(" nb seances en cours  "+nbseances_en_cours);
+
+                                    var emailsss = url.searchParams.get("email");
+                                    // alert(" E mail "+emailsss);
+
+                                 
+
+                                  var sql3 = "UPDATE users_paiement SET date_debut='"+nows+"',date_fin ='"+date_fin2+"', nbseances_total='"+0+"', nbseances_en_cours='"+"0"+"', dateencours='"+"0"+"' WHERE users_paiement.idPaiement="+idPaiement;
 
                                     console.log(sql3);
-                                      con.query(sql3, function (err, result) {
+                                     con.query(sql3, function (err, result) {
                                         // if (err) throw err;
                                         console.log("1 record inserted");
                                         
                                         alert(" Le renouvellement de l'abonnement est bien prise en compte. " , " Ellite Fitness Club ");
 
                                     });
+                                      
 
                             });
+
+
+                        
+                                var emailsss = url.searchParams.get("email");
+                                // alert(emailsss);
+
+                                if (emailsss != ""){
+
+                                    // alert(" SEND MAIL ");
+
+                                    var nodemailer = require('nodemailer');
+
+                                    var transporter = nodemailer.createTransport({
+                                      service: 'gmail',
+                                      auth: {
+                                        user: 'elitefitnessclubkebe@gmail.com',
+                                        pass: 'Elfit2017'
+                                      }
+                                    });
+
+                                    var mailOptions = {
+                                      from: 'elitefitnessclubkebe@gmail.com',
+                                      to: emailsss,
+                                      subject: 'Elite Fitness Club', 
+                                      text: ' Bonjour  '+nom+' '+prenom+', \n\n nous vous informons que votre abonnement à la salle Elite Fitness Kébé a été renouvelé avec succès.\n La nouvelle date d\'échéance est fixée au '+date_fin2+'\n\n Merci de votre confiance. \n\n L\'équipe Elite Fitness Kébé.'
+
+
+                                    };
+
+
+
+                                    transporter.sendMail(mailOptions, function(error, info){
+                                      if (error) {
+                                        console.log(error);
+                                      } else {
+                                        console.log('Email sent: ' + info.response);
+                                        // window.location.href = '../pages/forms.html';
+
+                                      }
+                                    });
+
+                                }
+
+                                
+
+                                
+                                
 
 
                 }
@@ -2847,10 +3081,410 @@ idUser
 
             }
     </script>
-	
+	<script>
+
+            var currentDate = new Date();
+            var day = currentDate.getDate();
+            var month = currentDate.getMonth() + 1;
+            var year = currentDate.getFullYear();
+            var nows;
+
+
+
+            if (day == 1) {
+
+                var days = "0" + 1;
+
+                if (month == 1) {
+                    var months = "0" + 1;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 2) {
+                    var months = "0" + 2;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 3) {
+                    var months = "0" + 3;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 4) {
+                    var months = "0" + 4;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 5) {
+                    var months = "0" + 5;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 6) {
+                    var months = "0" + 6;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 7) {
+                    var months = "0" + 7;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 8) {
+                    var months = "0" + 8;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 9) {
+                    var months = "0" + 9;
+                    nows = year + "-" + months + "-" + days;
+                } else {
+                    var months = month;
+                    nows = year + "-" + months + "-" + days;
+                }
+
+                // nows = year+"-"+month+"-"+days;
+            } else if (day == 2) {
+
+                var days = "0" + 2;
+                if (month == 1) {
+                    var months = "0" + 1;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 2) {
+                    var months = "0" + 2;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 3) {
+                    var months = "0" + 3;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 4) {
+                    var months = "0" + 4;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 5) {
+                    var months = "0" + 5;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 6) {
+                    var months = "0" + 6;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 7) {
+                    var months = "0" + 7;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 8) {
+                    var months = "0" + 8;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 9) {
+                    var months = "0" + 9;
+                    nows = year + "-" + months + "-" + days;
+                } else {
+                    var months = month;
+                    nows = year + "-" + months + "-" + days;
+                }
+                // nows = year+"-"+month+"-"+days;
+            } else if (day == 3) {
+
+                var days = "0" + 3;
+                if (month == 1) {
+                    var months = "0" + 1;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 2) {
+                    var months = "0" + 2;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 3) {
+                    var months = "0" + 3;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 4) {
+                    var months = "0" + 4;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 5) {
+                    var months = "0" + 5;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 6) {
+                    var months = "0" + 6;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 7) {
+                    var months = "0" + 7;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 8) {
+                    var months = "0" + 8;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 9) {
+                    var months = "0" + 9;
+                    nows = year + "-" + months + "-" + days;
+                } else {
+                    var months = month;
+                    nows = year + "-" + months + "-" + days;
+                }
+                // nows = year+"-"+month+"-"+days;
+            } else if (day == 4) {
+
+                var days = "0" + 4;
+                if (month == 1) {
+                    var months = "0" + 1;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 2) {
+                    var months = "0" + 2;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 3) {
+                    var months = "0" + 3;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 4) {
+                    var months = "0" + 4;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 5) {
+                    var months = "0" + 5;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 6) {
+                    var months = "0" + 6;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 7) {
+                    var months = "0" + 7;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 8) {
+                    var months = "0" + 8;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 9) {
+                    var months = "0" + 9;
+                    nows = year + "-" + months + "-" + days;
+                } else {
+                    var months = month;
+                    nows = year + "-" + months + "-" + days;
+                }
+                // nows = year+"-"+month+"-"+days;
+            } else if (day == 5) {
+
+                var days = "0" + 5;
+                if (month == 1) {
+                    var months = "0" + 1;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 2) {
+                    var months = "0" + 2;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 3) {
+                    var months = "0" + 3;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 4) {
+                    var months = "0" + 4;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 5) {
+                    var months = "0" + 5;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 6) {
+                    var months = "0" + 6;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 7) {
+                    var months = "0" + 7;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 8) {
+                    var months = "0" + 8;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 9) {
+                    var months = "0" + 9;
+                    nows = year + "-" + months + "-" + days;
+                } else {
+                    var months = month;
+                    nows = year + "-" + months + "-" + days;
+                }
+                // nows = year+"-"+month+"-"+days;
+            } else if (day == 6) {
+
+                var days = "0" + 6;
+                if (month == 1) {
+                    var months = "0" + 1;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 2) {
+                    var months = "0" + 2;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 3) {
+                    var months = "0" + 3;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 4) {
+                    var months = "0" + 4;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 5) {
+                    var months = "0" + 5;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 6) {
+                    var months = "0" + 6;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 7) {
+                    var months = "0" + 7;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 8) {
+                    var months = "0" + 8;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 9) {
+                    var months = "0" + 9;
+                    nows = year + "-" + months + "-" + days;
+                } else {
+                    var months = month;
+                    nows = year + "-" + months + "-" + days;
+                }
+                // nows = year+"-"+month+"-"+days;
+            } else if (day == 7) {
+
+                var days = "0" + 7;
+                if (month == 1) {
+                    var months = "0" + 1;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 2) {
+                    var months = "0" + 2;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 3) {
+                    var months = "0" + 3;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 4) {
+                    var months = "0" + 4;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 5) {
+                    var months = "0" + 5;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 6) {
+                    var months = "0" + 6;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 7) {
+                    var months = "0" + 7;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 8) {
+                    var months = "0" + 8;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 9) {
+                    var months = "0" + 9;
+                    nows = year + "-" + months + "-" + days;
+                } else {
+                    var months = month;
+                    nows = year + "-" + months + "-" + days;
+                }
+                // nows = year+"-"+month+"-"+days;
+            } else if (day == 8) {
+
+                var days = "0" + 8;
+                if (month == 1) {
+                    var months = "0" + 1;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 2) {
+                    var months = "0" + 2;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 3) {
+                    var months = "0" + 3;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 4) {
+                    var months = "0" + 4;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 5) {
+                    var months = "0" + 5;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 6) {
+                    var months = "0" + 6;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 7) {
+                    var months = "0" + 7;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 8) {
+                    var months = "0" + 8;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 9) {
+                    var months = "0" + 9;
+                    nows = year + "-" + months + "-" + days;
+                } else {
+                    var months = month;
+                    nows = year + "-" + months + "-" + days;
+                }
+                // nows = year+"-"+month+"-"+days;
+            } else if (day == 9) {
+
+                var days = "0" + 9;
+                if (month == 1) {
+                    var months = "0" + 1;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 2) {
+                    var months = "0" + 2;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 3) {
+                    var months = "0" + 3;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 4) {
+                    var months = "0" + 4;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 5) {
+                    var months = "0" + 5;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 6) {
+                    var months = "0" + 6;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 7) {
+                    var months = "0" + 7;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 8) {
+                    var months = "0" + 8;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 9) {
+                    var months = "0" + 9;
+                    nows = year + "-" + months + "-" + days;
+                } else {
+                    var months = month;
+                    nows = year + "-" + months + "-" + days;
+                }
+                // nows = year+"-"+month+"-"+day;
+            } else {
+
+                var days = day;
+                if (month == 1) {
+                    var months = "0" + 1;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 2) {
+                    var months = "0" + 2;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 3) {
+                    var months = "0" + 3;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 4) {
+                    var months = "0" + 4;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 5) {
+                    var months = "0" + 5;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 6) {
+                    var months = "0" + 6;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 7) {
+                    var months = "0" + 7;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 8) {
+                    var months = "0" + 8;
+                    nows = year + "-" + months + "-" + days;
+                } else if (month == 9) {
+                    var months = "0" + 9;
+                    nows = year + "-" + months + "-" + days;
+                } else {
+                    var months = month;
+                    nows = year + "-" + months + "-" + days;
+                }
+                // nows = year+"-"+month+"-"+days;
+            }
+
+
+
+
+
+    </script>
 	   
  	
 	<script>
+
+            var dd3;
+            var date_fin;
+
+            var e = document.getElementById("type_abonnement");
+
+            e.addEventListener("change", function(){
+
+                dd3 = document.getElementById("type_abonnement").value;
+
+                if (dd3 == undefined){
+                    dd3 = url.searchParams.get("id_typeabonnement");
+                    // console.log(" Le id_typeabonnement  "+id_typeabonnement);
+                }                 
+                
+
+                  if( dd3 == 5 || dd3 == 10 || dd3 == 15 || dd3 == 16 || dd3 == 17){
+                    console.log(dd3);
+
+                  }else{
+                    console.log(dd3);
+                    //dd3 = document.getElementById("dd").value ;
+                    //alert(dd3);
+
+                  }
+             });
+
+
+
+
+
+
 	function event_automatique(){
 	
 	d = document.getElementById("type_abonnement").value;
@@ -2862,17 +3496,54 @@ idUser
 	// console.log(dd);
 
 	// alert(d);
+
+
+    if (d != 5 || d != 10 || d != 15 || d != 16 || d != 17){
+        
+        document.getElementById("nbTicketsRestants").style.display='none';
+        document.getElementById("seancesTotal").style.display='none';
+        
+
+        date_fin = url.searchParams.get("date_fin");
+
+
+        if (date_fin=== " " || date_fin == "" || date_fin === ""){
+                date_fin = nows;
+                var date_debut = url.searchParams.get("date_debut");
+                // alert("date_debut");
+
+                // alert("date_fin"+date_fin);
+                document.getElementById("date_fin").value = date_fin
+                document.getElementById("date_debut").value = date_fin
+
+         
+         }else{
+            // alert(" NOn COOL ");
+
+            date_fin = url.searchParams.get("date_fin");
+
+
+
+         }
+
+    }
 	
-	if (d == 1 || d == 6 || d == 11 || d == 12 || d == 13 || d== 18){
+	if (d == 1 || d == 6 || d == 11 || d == 12 || d == 13 || d== 18 || d == 19){
 
 
 
-            var date_fin = url.searchParams.get("date_fin");
+            // date_fin = url.searchParams.get("date_fin");
             console.log(" Le date_fin  "+date_fin);
 
              var anne = date_fin.substring(0, 4);
              var mois = date_fin.substring(5, 7);
              var jour = date_fin.substring(8, 10);
+
+             // alert("LA DATE DE FIN ");
+             // alert("LA DATE DE FIN "+date_fin);
+
+
+             
 
 
 
@@ -3484,7 +4155,7 @@ idUser
 	//  Annuel
 
 
-            var date_fin = url.searchParams.get("date_fin");
+            // date_fin = url.searchParams.get("date_fin");
             console.log(" Le date_fin  "+date_fin);
 
              var anne = date_fin.substring(0, 4);
@@ -4116,7 +4787,7 @@ idUser
 			// var nows = day + "/" + month + "/" + year;
 			// var nows = anne+"-"+mois+"-"+jour;
 
-            var date_fin = url.searchParams.get("date_fin");
+            // date_fin = url.searchParams.get("date_fin");
             console.log(" Le date_fin  "+date_fin);
 
              var anne = date_fin.substring(0, 4);
@@ -4714,7 +5385,7 @@ idUser
 		// Semestriel
 		
 
-            var date_fin = url.searchParams.get("date_fin");
+            // date_fin = url.searchParams.get("date_fin");
             console.log(" Le date_fin  "+date_fin);
 
              var anne = date_fin.substring(0, 4);
@@ -5331,7 +6002,7 @@ idUser
             // var nows = anne+"-"+mois+"-"+jour;
             // console.log("  DATE "+nows);  
 
-            var date_fin = url.searchParams.get("date_fin");
+            // date_fin = url.searchParams.get("date_fin");
             console.log(" Le date_fin  "+date_fin);
 
             var annes = date_fin.substring(0, 4);

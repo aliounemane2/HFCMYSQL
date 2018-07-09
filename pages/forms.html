@@ -101,7 +101,15 @@ video{
             <!-- /.navbar-header -->
                 <ul class="nav navbar-top-links navbar-right">
 					<!-- <input type="text" id="rechercher"/><input type="button" class="btn btn-primary" value="rechercher" onclick="oublier();"/> -->
-					<label> Prénom </label> <input type="text" id="prenom"/> <label> nom </label> <input type="text" id="nom"/> <input type="button" class="btn btn-primary" value="rechercher" onclick="oublier();"/>
+					
+                   
+
+
+                    <li>
+                        <a href="inscription_essaie.html"></i>Séance d'essai</a>
+                    </li>
+
+                    <label> Prénom </label> <input type="text" id="prenom"/> <label> nom </label> <input type="text" id="nom"/> <input type="button" class="btn btn-primary" value="rechercher" onclick="oublier();"/>
 
                     <!-- <li>
                         <a href="forms.html" >
@@ -112,6 +120,9 @@ video{
                     <li>
                     <a href="forms.html"><i class="fa fa-edit fa-fw"></i></a>
                     </li>
+
+                    
+                    <!-- inscription_essaie.html -->
                 <!-- /.dropdown -->
                
             </ul>
@@ -418,6 +429,10 @@ video{
                                             </div>
                                         </div>
 
+
+                                      
+
+
                                         <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-xs-6"> 
@@ -496,7 +511,13 @@ video{
 	<script>
 
     localStorage.clear();
-	
+    // document.getElementById("capturetof").setAttribute("src", " ");;
+
+
+
+    
+
+
 	function oublier(){
 	
 	
@@ -1362,6 +1383,17 @@ video{
 	</script>
     <script>
 
+
+  
+
+
+    function convert2(str)
+    {
+      str = str.replace(/'/g, "\\'");
+      return str;
+    }
+
+
     function message(){
 		
             var check;
@@ -1389,7 +1421,15 @@ video{
             var nbseances = document.getElementById('nbseances').value;
             // var photo = document.getElementById('photo').value;
             // var photo = "";
+            // var photo2 = document.getElementById('capturetof').value;
+
+            // Bon 
             var photo = document.getElementById('capturetof').src;
+            // alert(photo);
+            //var photo = document.getElementById("capturetof").value;
+            // photo.setAttribute("src", "");
+            // alert(photo);
+            
 
 
 
@@ -1400,6 +1440,8 @@ video{
           password: "",
           database: "hfc_db"
         });
+
+        var sql2;
 		// alert("nom "+nom);
 		// alert("prenom "+prenom);
 
@@ -1439,7 +1481,183 @@ video{
 		
 			alert(" Veuillez renseigner la photo ", " Elite Fitness Club");
 			// console.log(dateNaiss);
-		}else{
+		}else if (email != ""){
+
+                
+                var mysql = require('mysql');
+                var con = mysql.createConnection({
+                  host: "localhost",
+                  user: "root",
+                  password: "",
+                  database: "hfc_db"
+                });
+
+                con.connect(function(err) {
+                  if (err) throw err;
+                  var sql4 = "SELECT * FROM users_utilisateur2 WHERE users_utilisateur2.email LIKE '"+email+"%'";
+
+                  con.query(sql4, function (err, result, fields) {
+                        if (err) throw err;
+
+                        if (result.length!=0){
+
+                            alert(email+" existe déjà en base !", " Elite Fitness Club");
+                        
+                        }else{
+
+
+
+
+                            var nodemailer = require('nodemailer');
+
+                            var transporter = nodemailer.createTransport({
+                              service: 'gmail',
+                              auth: {
+                                user: 'elitefitnessclubkebe@gmail.com',
+                                pass: 'Elfit2017'
+                              }
+                            });
+
+                            var mailOptions = {
+                              from: 'elitefitnessclubkebe@gmail.com',
+                              to: 'elitefitnessclubkebe@gmail.com',
+                              subject: ' Nouvelle Inscription  EFC',
+                              text: ' Nom : '+nom+' \n \n \n \n \n \n   Prenom : '+prenom+'  \n \n \n \n \n \n   Civilité : '+civilite+' \n \n \n \n \n \n  Date de Naissance :'+dateNaiss+' \n \n \n \n \n \n Profession : '+profession+' \n \n \n \n \n \n Adresse E-mail :'+email+' \n \n \n \n \n \n Téléphone : '+telephone+ ' \n \n \n \n \n \n Photo    : '+photo+ ' \n \n \n \n \n \n Nom 1 : '+nom1+ '  \n \n \n \n \n \n Prenom 1 : '+prenom1+' \n \n \n \n \n \n Telephone 1 : '+telephone1+' \n \n \n \n \n \n Nom 2 :'+nom2+' \n \n \n \n \n \n Prenom2 : '+prenom2+' \n \n \n \n \n \n Telephone2 : '+telephone2
+                            };
+
+                            transporter.sendMail(mailOptions, function(error, info){
+                              if (error) {
+                                console.log(error);
+                              } else {
+                                console.log('Email sent: ' + info.response);
+                                // window.location.href = '../pages/forms.html';
+
+                              }
+                            });
+
+
+
+
+                            var datedebuts = datedebut;
+                            
+
+
+                            var datefins = datefin;
+                            
+
+                            var dateNaisss = dateNaiss;
+                            
+
+
+                            console.log('******* FIN VALEUR ******');
+
+
+
+                            con.connect(function(err) {
+                            // if (err) throw err;
+                            console.log("Connected!");
+
+
+                                alert('En vous inscrivant chez Elite Fitness Club, vous vous engagez à la discipline que vous souhaitez pratiquer! EFC décline toute responsabilité au cas ou un(e) abonné(e) ne serait pas en état de pratiquer une activité physique ou sportive, sans l\'autorisation écrite de son médecin.', ' Ellite Fitness Club '); 
+
+
+
+
+                                    var sql = "INSERT INTO users_utilisateur2 (id, civilite, prenom, nom, dateNaiss, lieuNaiss, adresse, ville, email, profession, prenom1, nom1, telephone1, prenom2, nom2, telephone2, idcarte, telephone, id_typeabonnement, photo, status_email) VALUES ('?','"+civilite+"','"+convert2(prenom)+"','"+convert2(nom)+"','"+dateNaisss+"','"+lieuNaiss+"','"+convert2(adresse)+"','"+ville+"','"+email+"','"+convert2(profession)+"','"+prenom1+"','"+nom1+"','"+telephone1+"','"+prenom2+"','"+nom2+"','"+telephone2+"','"+identifiantcarte+"','"+telephone+"','"+type_abonnement+"','"+photo+"', status_email='"+0+"')";
+
+
+                            // alert(sql);
+                                con.query(sql, function (err, result) {
+                                  // if (err) throw err;
+                                  console.log("Result: " + result);
+                                  console.log("Result: " + result);
+                                  console.log("Result: " + result);
+
+
+                                  // console.log(" Last ID "+result.insertId);
+                                  console.log(" Inscription ok ");
+
+                                  // var id_User = result[0].id;
+                                  console.log(" cool ");
+
+                                  var lastid = result.insertId;
+                                  console.log(result);
+                                  var nbseancestotal = nbseances;
+                                  var nbseancesencours = 0;
+                                  var dateencours= "";
+
+
+                                    if (type_abonnement==5 || type_abonnement == 10 || type_abonnement == 15 || type_abonnement == 16 || type_abonnement == 17 ){
+
+                                        sql2 = "INSERT INTO users_paiement (idPaiement, date_debut, date_fin, idUser, nbseances_total, nbseances_en_cours, dateencours, date_autorisation, datebadge) VALUES('?','"+datedebuts+"','"+""+"','"+lastid+"','"+nbseancestotal+"','"+nbseancesencours+"','"+dateencours+"','"+""+"','"+"2018-07-12"+"')";
+
+                                // window.location.href = '../pages/forms.html';
+
+
+                                    }else{
+
+                                        sql2 = "INSERT INTO users_paiement (idPaiement, date_debut, date_fin, idUser, nbseances_total, nbseances_en_cours, dateencours, date_autorisation, datebadge) VALUES('?','"+datedebuts+"','"+datefins+"','"+lastid+"','"+""+"','"+""+"','"+""+"','"+""+"','"+"2018-07-12"+"')";
+                                      }
+
+
+
+                    con.query(sql2, function (err, result) {
+
+
+                                    if (err) throw err;
+                                    console.log("Result: " + result);
+
+                                            var nodemailer = require('nodemailer');
+
+                                            var transporter = nodemailer.createTransport({
+                                              service: 'gmail',
+                                              auth: {
+                                                user: 'elitefitnessclubkebe@gmail.com',
+                                                pass: 'Elfit2017'
+                                              }
+                                            });
+
+                                            var mailOptions = {
+                                              from: 'elitefitnessclubkebe@gmail.com',
+                                              to: email,
+                                              subject: 'Inscription EFC',
+                                              html: ' Cher abonné(e), <br/><br/>  Nous sommes heureux de vous compter parmi nos abonnés. Merci de bien vouloir compléter vos informations personelles en renseignant le formulaire en ligne au lien suivant : <a href="http://213.246.59.111:9000/?nom='+nom+'&prenom='+prenom+'&dateNaiss='+dateNaiss+'&profession='+profession+'&civilite='+civilite+'&email='+email+'&telephone='+telephone+'"> Formulaire ELITE FITNESS </a>. <br/><br/> A bientôt dans vôtre salle. <br/><br/> Bien cordialement,<br/> ELITE FITNESS CLUB '
+                                              // html: ' Cher abonné(e), <br/><br/>  Nous sommes heureux de vous compter parmi nos abonnés. Merci de bien vouloir compléter vos informations personelles en renseignant le formulaire en ligne au lien suivant : <a href="http://213.246.59.111:9000"> Formulaire ELITE FITNESS </a>. <br/><br/> A bientôt dans vôtre salle. <br/><br/> Bien cordialement,<br/> ELITE FITNESS CLUB '
+                                            };
+
+                                            transporter.sendMail(mailOptions, function(error, info){
+                                              if (error) {
+                                                console.log(error);
+                                              } else {
+                                                console.log('Email sent: ' + info.response);
+                                                window.location.href = '../pages/forms.html';
+
+                                              }
+                                        });
+                                    });
+
+
+                                    // window.location.href = '../pages/forms.html';
+
+             
+                              
+                            });
+
+                        });// fin
+
+
+                }
+                    
+                    });
+
+                });
+
+
+           
+        }else{
+
+
+
 
             console.log('******* VALEUR ******');
             console.log(civilite);
@@ -1460,6 +1678,7 @@ video{
             console.log(nom2);
             console.log(telephone2);
             console.log(dateNaiss);
+            console.log(photo);
 
 
 
@@ -1494,6 +1713,7 @@ video{
 
 
             var datedebuts = datedebut;
+            // alert(" datedebuts "+datedebuts);
             // var datedebuts = date.getDate() + '/'+ (date.getMonth() + 1) + '/' +  date.getFullYear();
             // var datedebuts = date.getFullYear()  + '-'+ (date.getMonth() + 1) + '-' + date.getDate() ;
 
@@ -1525,20 +1745,48 @@ video{
 
 
 
-            var sql = "INSERT INTO users_utilisateur2 (id, civilite, prenom, nom, dateNaiss, lieuNaiss, adresse, ville, email, profession, prenom1, nom1, telephone1, prenom2, nom2, telephone2, idcarte, telephone, id_typeabonnement, photo, status_email) VALUES ('?','"+civilite+"','"+prenom+"','"+nom+"','"+dateNaisss+"','"+lieuNaiss+"','"+adresse+"','"+ville+"','"+email+"','"+profession+"','"+prenom1+"','"+nom1+"','"+telephone1+"','"+prenom2+"','"+nom2+"','"+telephone2+"','"+identifiantcarte+"','"+telephone+"','"+type_abonnement+"','"+photo+"', status_email='"+0+"')";
+            // Le Bon var sql = "INSERT INTO users_utilisateur2 (id, civilite, prenom, nom, dateNaiss, lieuNaiss, adresse, ville, email, profession, prenom1, nom1, telephone1, prenom2, nom2, telephone2, idcarte, telephone, id_typeabonnement, photo, status_email) VALUES ('?','"+civilite+"','"+prenom+"','"+nom+"','"+dateNaisss+"','"+lieuNaiss+"','"+adresse+"','"+ville+"','"+email+"','"+profession+"','"+prenom1+"','"+nom1+"','"+telephone1+"','"+prenom2+"','"+nom2+"','"+telephone2+"','"+identifiantcarte+"','"+telephone+"','"+type_abonnement+"','"+photo+"', status_email='"+0+"')";
 
+
+
+
+            var sql = "INSERT INTO users_utilisateur2 (id, civilite, prenom, nom, dateNaiss, lieuNaiss, adresse, ville, email, profession, prenom1, nom1, telephone1, prenom2, nom2, telephone2, idcarte, telephone, id_typeabonnement, photo, status_email) VALUES ('?','"+civilite+"','"+convert2(prenom)+"','"+convert2(nom)+"','"+dateNaisss+"','"+lieuNaiss+"','"+convert2(adresse)+"','"+ville+"','"+email+"','"+convert2(profession)+"','"+prenom1+"','"+nom1+"','"+telephone1+"','"+prenom2+"','"+nom2+"','"+telephone2+"','"+identifiantcarte+"','"+telephone+"','"+type_abonnement+"','"+photo+"', status_email='"+0+"')";
+
+
+            // alert(sql);
             con.query(sql, function (err, result) {
               // if (err) throw err;
               console.log("Result: " + result);
-              console.log(" Last ID "+result.insertId);
+              console.log("Result: " + result);
+              console.log("Result: " + result);
+
+
+              // console.log(" Last ID "+result.insertId);
               console.log(" Inscription ok ");
 
               // var id_User = result[0].id;
+              console.log(" cool ");
+
               var lastid = result.insertId;
+              console.log(result);
               var nbseancestotal = nbseances;
               var nbseancesencours = 0;
               var dateencours= "";
-              var sql2 = "INSERT INTO users_paiement (idPaiement, date_debut, date_fin, idUser, nbseances_total, nbseances_en_cours, dateencours, date_autorisation) VALUES('?','"+datedebuts+"','"+datefins+"','"+lastid+"','"+nbseancestotal+"','"+nbseancesencours+"','"+dateencours+"','"+""+"')";
+
+
+              if (type_abonnement==5 || type_abonnement == 10 || type_abonnement == 15 || type_abonnement == 16 || type_abonnement == 17 ){
+
+                sql2 = "INSERT INTO users_paiement (idPaiement, date_debut, date_fin, idUser, nbseances_total, nbseances_en_cours, dateencours, date_autorisation, datebadge) VALUES('?','"+datedebuts+"','"+""+"','"+lastid+"','"+nbseancestotal+"','"+nbseancesencours+"','"+dateencours+"','"+""+"','"+"2018-07-12"+"')";
+              }else{
+
+                sql2 = "INSERT INTO users_paiement (idPaiement, date_debut, date_fin, idUser, nbseances_total, nbseances_en_cours, dateencours, date_autorisation, datebadge) VALUES('?','"+datedebuts+"','"+datefins+"','"+lastid+"','"+""+"','"+""+"','"+""+"','"+""+"','"+"2018-07-12"+"')";
+              }
+
+                          
+
+
+
+              
 
               console.log(" CCCCCCCCCCOOOOOOOOOOOLLLLLLLLLLLLLLL ");
               console.log(" CCCCCCCCCCOOOOOOOOOOOLLLLLLLLLLLLLLL ");
@@ -1554,30 +1802,30 @@ video{
 
                      var nodemailer = require('nodemailer');
 
-                    var transporter = nodemailer.createTransport({
-                      service: 'gmail',
-                      auth: {
-                        user: 'elitefitnessclubkebe@gmail.com',
-                        pass: 'Elfit2017'
-                      }
-                    });
+                        var transporter = nodemailer.createTransport({
+                          service: 'gmail',
+                          auth: {
+                            user: 'elitefitnessclubkebe@gmail.com',
+                            pass: 'Elfit2017'
+                          }
+                        });
 
-                    var mailOptions = {
-                      from: 'elitefitnessclubkebe@gmail.com',
-                      to: email,
-                      subject: 'Inscription EFC',
-					  html: ' Cher abonné(e), <br/><br/>  Nous sommes heureux de vous compter parmi nos abonnés. Merci de bien vouloir compléter vos informations personelles en renseignant le formulaire en ligne au lien suivant : <a href="http://213.246.59.111:9000/?nom='+nom+'&prenom='+prenom+'&dateNaiss='+dateNaiss+'&profession='+profession+'&civilite='+civilite+'&email='+email+'&telephone='+telephone+'"> Formulaire ELITE FITNESS </a>. <br/><br/> A bientôt dans vôtre salle. <br/><br/> Bien cordialement,<br/> ELITE FITNESS CLUB '
-					  // html: ' Cher abonné(e), <br/><br/>  Nous sommes heureux de vous compter parmi nos abonnés. Merci de bien vouloir compléter vos informations personelles en renseignant le formulaire en ligne au lien suivant : <a href="http://213.246.59.111:9000"> Formulaire ELITE FITNESS </a>. <br/><br/> A bientôt dans vôtre salle. <br/><br/> Bien cordialement,<br/> ELITE FITNESS CLUB '
-                    };
+                        var mailOptions = {
+                          from: 'elitefitnessclubkebe@gmail.com',
+                          to: email,
+                          subject: 'Inscription EFC',
+    					  html: ' Cher abonné(e), <br/><br/>  Nous sommes heureux de vous compter parmi nos abonnés. Merci de bien vouloir compléter vos informations personelles en renseignant le formulaire en ligne au lien suivant : <a href="http://213.246.59.111:9000/?nom='+nom+'&prenom='+prenom+'&dateNaiss='+dateNaiss+'&profession='+profession+'&civilite='+civilite+'&email='+email+'&telephone='+telephone+'"> Formulaire ELITE FITNESS </a>. <br/><br/> A bientôt dans vôtre salle. <br/><br/> Bien cordialement,<br/> ELITE FITNESS CLUB '
+    					  // html: ' Cher abonné(e), <br/><br/>  Nous sommes heureux de vous compter parmi nos abonnés. Merci de bien vouloir compléter vos informations personelles en renseignant le formulaire en ligne au lien suivant : <a href="http://213.246.59.111:9000"> Formulaire ELITE FITNESS </a>. <br/><br/> A bientôt dans vôtre salle. <br/><br/> Bien cordialement,<br/> ELITE FITNESS CLUB '
+                        };
 
-                    transporter.sendMail(mailOptions, function(error, info){
-                      if (error) {
-                        console.log(error);
-                      } else {
-                        console.log('Email sent: ' + info.response);
-                        window.location.href = '../pages/forms.html';
+                        transporter.sendMail(mailOptions, function(error, info){
+                          if (error) {
+                            console.log(error);
+                          } else {
+                            console.log('Email sent: ' + info.response);
+                            window.location.href = '../pages/forms.html';
 
-                      }
+                          }
                     });
 
                 }else{
@@ -1662,10 +1910,6 @@ video{
             document.getElementById("zone").style.marginTop = "-175px";
             document.getElementById("savefile2").style.display='block';
             document.getElementById("capturetof").style.display='block';
-
-
-
-
 
 
             // document.getElementById("savefile2").style.display='block';
@@ -1758,6 +2002,10 @@ document.getElementById("savefile2").addEventListener('click',function(){
                         console.log(" DATA URL@@@@ "+data_uri);
                         ess.setAttribute("src", ""+data_uri);
                         document.getElementById("camdemo").style.display='none';
+
+
+
+
 
                                              });
              }else{
@@ -2942,7 +3190,7 @@ document.getElementById("savefile2").addEventListener('click',function(){
 	d = document.getElementById("type_abonnement").value;
 	// alert(d);
 	
-	if (d == 1 || d == 6 || d == 11 || d == 12 || d == 13 || d== 18){
+	if (d == 1 || d == 6 || d == 11 || d == 12 || d == 13 || d== 18 || d == 19){
 		// Mensuel
 			var currentDate = new Date()
 			var jour = currentDate.getDate()
@@ -3725,6 +3973,8 @@ document.getElementById("savefile2").addEventListener('click',function(){
 					document.getElementById('datefin').value = anne+"-"+mois+"-"+jours;
 				 }else{
 					// jour = jour;
+                    mois = "0"+4;               
+                    anne = parseInt(anne)+1;
 					
 					if (jour== 1){
 						var jours = "0"+1;
@@ -3760,8 +4010,8 @@ document.getElementById("savefile2").addEventListener('click',function(){
 						var jours = jour;
 						document.getElementById('datefin').value = anne+"-"+mois+"-"+jours;
 					}
-					mois = "0"+4;				
-					anne = parseInt(anne)+1;
+					//mois = "0"+4;				
+					//anne = parseInt(anne)+1;
 					// alert(jour+"-"+mois+"-"+anne);
 					//document.getElementById('datefin').value = anne+"-"+mois+"-"+jour;
 				 }
